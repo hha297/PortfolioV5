@@ -1,10 +1,8 @@
-Here’s the translation of your text to English:  
-
----
+The portfolio is inspired by the template/concept from @EkiZR.
 
 # Portfolio V5  
 Hello everyone!  
-Let me introduce myself, I’m Eki Zulfar Rachman. On this occasion, I’d like to share the portfolio website project that I’ve developed.  
+Let me introduce myself, I’m Dang Hoang Ha. On this occasion, I’d like to share the portfolio website project that I’ve developed.  
 
 **Tech Stack used:**  
 - ReactJS  
@@ -16,10 +14,7 @@ Let me introduce myself, I’m Eki Zulfar Rachman. On this occasion, I’d like 
 - Material UI  
 - SweetAlert2  
 
-**Website Link:**  
-[https://www.eki.my.id/](https://www.eki.my.id/)  
 
-We would appreciate it if you decide to use this project. Please include credit when using it. Thank you! 🙏  
 
 ---
 
@@ -109,10 +104,7 @@ To configure Firebase for this project, follow these steps:
 5. **Adjust the Collection Structure:**  
    - Set up the collections as shown in the following images:  
 
-   ![Collection Structure Example 1](https://github.com/user-attachments/assets/38580122-08a4-4499-a8fd-0f253652a239)  
-   ![Collection Structure Example 2](https://github.com/user-attachments/assets/d563d7ad-f1ab-46ff-8185-640dcebd0363)  
-
-6. **Update `firebase.js` and `firebase-comment.js` Files:**  
+6. **Update `firebase.js` and `firebase-comment.js` and `constants/assets/certificates` and also `constants/assets/projects`  Files:**  
    - Replace the `firebaseConfig` content with your Firebase configuration.  
 
 ---
