@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { ExternalLink, ArrowRight } from 'lucide-react';
 
-const CardProject = ({ Img, Title, Description, Link: ProjectLink, github }) => {
+const CardProject = ({ Img, Title, Description, Link: ProjectLink, id }) => {
         // Handle kasus ketika ProjectLink kosong
         const handleLiveDemo = (e) => {
                 if (!ProjectLink) {
@@ -12,7 +12,7 @@ const CardProject = ({ Img, Title, Description, Link: ProjectLink, github }) => 
         };
 
         const handleDetails = (e) => {
-                if (!github) {
+                if (!id) {
                         e.preventDefault();
                         alert('Project details are not available');
                 }
@@ -28,7 +28,7 @@ const CardProject = ({ Img, Title, Description, Link: ProjectLink, github }) => 
                                                 <img
                                                         src={Img}
                                                         alt={Title}
-                                                        className="w-full h-40 object-cover transform group-hover:scale-110 transition-transform duration-500"
+                                                        className="w-full h-40 object-cover transform group-hover:scale-105 transition-transform duration-500"
                                                 />
                                         </div>
 
@@ -61,9 +61,9 @@ const CardProject = ({ Img, Title, Description, Link: ProjectLink, github }) => 
                                                                 </span>
                                                         )}
 
-                                                        {github ? (
+                                                        {id ? (
                                                                 <Link
-                                                                        to={`${github}`}
+                                                                        to={`/project/${id}`}
                                                                         onClick={handleDetails}
                                                                         className="inline-flex items-center space-x-2 px-4 py-2 rounded-lg bg-white/5 hover:bg-white/10 text-white/90 transition-all duration-200 hover:scale-105 active:scale-95 focus:outline-none focus:ring-2 focus:ring-purple-500/50"
                                                                 >

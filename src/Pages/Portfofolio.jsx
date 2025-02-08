@@ -301,7 +301,7 @@ export default function FullWidthTabs() {
                                                                                                 project.Description
                                                                                         }
                                                                                         Link={project.Link}
-                                                                                        github={project.github}
+                                                                                        id={project.id}
                                                                                 />
                                                                         </div>
                                                                 ))}
