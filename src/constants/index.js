@@ -166,7 +166,7 @@ export const projectsData = [
                         'A fullstack mobile app with React Native for handling the user interface, Google Maps for rendering maps with directions, stripe for handling payments, serverless Postgres for managing databases, and styled with TailwindCSS, ',
                 Link: 'https://github.com/hha297/Ryder',
                 github: 'https://github.com/hha297/Ryder',
-                TechStack: ['React Native', 'Expo', 'Stripe', 'PostgresSQL', 'Zustand', 'Clerk', 'TailwindCSS'],
+                TechStack: ['React Native', 'Expo', 'Stripe', 'PostgreSQL', 'Zustand', 'Clerk', 'TailwindCSS'],
                 Features: [
                         'Onboarding Flow: Seamless user registration and setup process.',
                         'Email Password Authentication with Verification: Secure login with email verification.',
