@@ -219,8 +219,8 @@ const AboutPage = () => {
                                                         data-aos-duration="1500"
                                                 >
                                                         I'm a software developer with experience in Javascript,
-                                                        TypeScript and also get used to in frameworks like React,
-                                                        Node.js, Three.js.
+                                                        TypeScript and also get used to in frameworks like React.js,
+                                                        Next.js and Node.js.
                                                         <br />
                                                         <br />
                                                         I'm also a quick learner and willing to collaborate closely with

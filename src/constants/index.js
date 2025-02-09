@@ -107,8 +107,9 @@ export const projectsData = [
                 Title: 'Moview',
                 Description:
                         'Web application that enables users to explore a diverse range of films, from blockbusters to hidden gems, and provides a platform for movie enthusiasts to discover new titles and connect with their favorite actors and actresses.',
-                Link: 'https://github.com/hha297/Blaugrana_Furniture',
-                github: 'https://github.com/hha297/Blaugrana_Furniture',
+
+                Link: 'https://reactjs-movie-hha2907.vercel.app/',
+                github: 'https://github.com/hha297/reactjs-movie',
                 TechStack: ['Javascript', 'ReactJS', 'MongoDB', 'TailwindCSS', 'NodeJS'],
                 Features: [
                         'Movie Search and Filtering: Allow users to search for movies by title, genre, or release year. Provide filters to narrow down the results based on various criteria (e.g., rating, popularity, release date).',
@@ -145,8 +146,8 @@ export const projectsData = [
                 Title: 'Blaugrana Furniture',
                 Description:
                         'Blaugrana Furniture app caters to individuals seeking premium furniture to elevate the style and comfort of their homes. It also serves as a dynamic platform for merchants, allowing them to showcase their exquisite furniture collections online, expand their reach, and provide customers with the convenience of browsing and ordering their products effortlessly.',
-                Link: 'https://github.com/hha297/reactjs-movie',
-                github: 'https://github.com/hha297/reactjs-movie',
+                Link: 'https://github.com/hha297/Blaugrana_Furniture',
+                github: 'https://github.com/hha297/Blaugrana_Furniture',
                 TechStack: ['Kotlin', 'Java', 'Coroutines', 'MVVM & LiveData', 'Firebase'],
                 Features: [
                         'Browse Premium Furniture: Explore a wide variety of high-quality furniture collections for living rooms, bedrooms, and more, with detailed descriptions and images.',
