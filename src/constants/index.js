@@ -14,6 +14,7 @@ import {
 import {
         BlaugranaFurniture,
         Imaginify,
+        Jira,
         Moview,
         Ryder,
         Slack,
@@ -22,6 +23,36 @@ import {
 } from './assets/projects/index.js';
 
 export const projectsData = [
+        {
+                id: 'jira-clone',
+                Img: Jira, // Assuming you have the Jira image
+                Title: 'Jira Clone',
+                Description:
+                        'An end-to-end fullstack Jira clone with workspaces, projects, epics, tasks, kanban boards, calendars, editing and deleting tasks, invite system, role-based access control, image uploads, analytics, authentication and more!',
+                Link: 'https://jira-clone-hha2907s-projects.vercel.app',
+                github: 'https://github.com/hha297/Jira-Clone',
+                TechStack: ['Next.js', 'ReactJS', 'TypeScript', 'TailwindCSS', 'Appwrite', 'Hono.js'],
+                Features: [
+                        '🏢 Workspaces: Organize tasks and projects within dedicated workspaces, offering a collaborative environment.',
+                        '📊 Projects / Epics: Create and manage projects and epics to structure your tasks and milestones effectively.',
+                        '✅ Tasks: Assign, track, and manage tasks with detailed descriptions and deadlines.',
+                        '📋 Kanban Board View: Visualize and organize tasks using a kanban board for easy tracking of project progress.',
+                        '🗃️ Data Table View: An alternate view to manage tasks and projects in a structured table format.',
+                        '📅 Calendar View: Keep track of deadlines, tasks, and project milestones with a comprehensive calendar view.',
+                        '✉️ Invite System: Invite team members to workspaces or projects using invite links or unique codes.',
+                        '⚙️ Workspace and Project Settings: Customize and configure workspace and project settings according to your needs.',
+                        '🖼️ Image Uploads: Upload images for avatars, attachments, or any related resources.',
+                        '🔌 Appwrite SDK Integration: Backend integration with Appwrite SDK for managing tasks, users, and storage.',
+                        '⚛️ Next.js 14 Framework: Utilizes the latest Next.js 14 framework for optimal performance and scalability.',
+                        '🎨 Shadcn UI & TailwindCSS Styling: Modern, responsive UI with Shadcn UI components and TailwindCSS styling.',
+                        '🔍 Advanced Search and Filtering: Quickly find tasks, projects, and users with powerful search and filtering options.',
+                        '📈 Analytics Dashboard: Gain insights into project performance, task completion, and team activity with an analytics dashboard.',
+                        '👥 User Roles and Permissions: Implement role-based access control to ensure proper access levels across teams.',
+                        '🔒 Authentication: Supports OAuth and email-based authentication for secure login.',
+                        '📱 Responsive Design: Fully mobile-friendly design for easy use on all devices.',
+                        '🚀 API using Hono.js: Fast and lightweight API integration with Hono.js for handling tasks and user management.',
+                ],
+        },
         {
                 id: 'slack-clone',
                 Img: Slack,

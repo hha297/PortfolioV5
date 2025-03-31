@@ -6,5 +6,6 @@ import Slack from './slack-clone.png';
 import Snapshot from './snapshot.png';
 import BlaugranaFurniture from './blaugranafurniture.png';
 import Ryder from './Ryder.png';
+import Jira from './jira.png';
 
-export { ThreeDPortfolio, Imaginify, Moview, Slack, Snapshot, BlaugranaFurniture, Ryder };
+export { ThreeDPortfolio, Imaginify, Moview, Slack, Snapshot, BlaugranaFurniture, Ryder, Jira };
