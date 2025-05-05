@@ -7,5 +7,6 @@ import Snapshot from './snapshot.png';
 import BlaugranaFurniture from './blaugranafurniture.png';
 import Ryder from './Ryder.png';
 import Jira from './jira.png';
+import Docs from './docs.png';
 
-export { ThreeDPortfolio, Imaginify, Moview, Slack, Snapshot, BlaugranaFurniture, Ryder, Jira };
+export { ThreeDPortfolio, Imaginify, Moview, Slack, Snapshot, BlaugranaFurniture, Ryder, Jira, Docs };
