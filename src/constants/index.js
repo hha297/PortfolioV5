@@ -21,9 +21,39 @@ import {
         Snapshot,
         ThreeDPortfolio,
         Docs,
+        Funroad,
 } from './assets/projects/index.js';
 
 export const projectsData = [
+        {
+                id: 'funroad',
+                Img: Funroad,
+                Title: 'Funroad',
+                Description:
+                        'An e-commerce app where creators have their own storefronts, sell digital products, and get paid through Stripe Connect. It’s a solid, practical project that walks you through how modern platforms are made.',
+                Link: 'https://funroad-iota.vercel.app/',
+                github: 'https://github.com/hha297/Funroad',
+                TechStack: ['Next.js 15', 'React.js', 'TypeScript', 'TailwindCSS', 'MongoDB', 'Payload CMS', 'Stripe'],
+                Features: [
+                        '🏬 Multi-tenant architecture',
+                        '🌐 Vendor subdomains',
+                        '🎨 Custom merchant storefronts',
+                        '💳 Stripe Connect integration',
+                        '💰 Automatic platform fees',
+                        '⭐ Product ratings & reviews',
+                        '📚 User purchase library',
+                        '🧑‍💼 Role-based access control',
+                        '🛠️ Admin dashboard',
+                        '🧾 Merchant dashboard',
+                        '🧱 Payload CMS backend',
+                        '🗂️ Category & product filtering',
+                        '🔍 Search functionality',
+                        '🖼️ Image upload support',
+                        '⚙️ Built with Next.js 15',
+                        '🎨 TailwindCSS V4 styling',
+                        '💅 ShadcnUI components',
+                ],
+        },
         {
                 id: 'docs-editor',
                 Img: Docs,
