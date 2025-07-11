@@ -25,7 +25,7 @@ const MainTitle = memo(() => (
                         <span className="relative inline-block">
                                 <span className="absolute -inset-2 bg-gradient-to-r from-[#6366f1] to-[#a855f7] blur-2xl opacity-20"></span>
                                 <span className="relative bg-gradient-to-r from-white via-blue-100 to-purple-200 bg-clip-text text-transparent">
-                                        Frontend
+                                        Full-Stack
                                 </span>
                         </span>
                         <br />

@@ -1,6 +1,6 @@
-import React, { useEffect, useState, useCallback } from 'react';
-import { db, collection } from '../firebase.js';
-import { getDocs } from 'firebase/firestore';
+'use client';
+
+import { useEffect, useState, useCallback } from 'react';
 import PropTypes from 'prop-types';
 import SwipeableViews from 'react-swipeable-views';
 import { useTheme } from '@mui/material/styles';
@@ -11,10 +11,11 @@ import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import CardProject from '../components/CardProject.jsx';
 import TechStackIcon from '../components/TechStackIcon.jsx';
+import WorkExperience from '../components/WorkExperience.jsx';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 import Certificate from '../components/Certificate.jsx';
-import { Code, Award, Boxes } from 'lucide-react';
+import { Code, Award, Boxes, Briefcase } from 'lucide-react';
 import { certificatesData, projectsData } from '../constants/index.js';
 
 // Separate ShowMore/ShowLess button component
@@ -126,9 +127,8 @@ export default function FullWidthTabs() {
         const initialItems = isMobile ? 4 : 6;
 
         useEffect(() => {
-                // Initialize AOS once
                 AOS.init({
-                        once: false, // This will make animations occur only once
+                        once: false,
                 });
         }, []);
 
@@ -152,7 +152,6 @@ export default function FullWidthTabs() {
                         className="md:px-[10%] px-[5%] w-full sm:mt-0 mt-[3rem] bg-[#030014] overflow-hidden"
                         id="Portofolio"
                 >
-                        {/* Header section - unchanged */}
                         <div className="text-center pb-10" data-aos="fade-up" data-aos-duration="1000">
                                 <h2 className="inline-block text-3xl md:text-5xl font-bold text-center mx-auto text-transparent bg-clip-text bg-gradient-to-r from-[#6366f1] to-[#a855f7]">
                                         <span
@@ -175,7 +174,6 @@ export default function FullWidthTabs() {
                         </div>
 
                         <Box sx={{ width: '100%' }}>
-                                {/* AppBar and Tabs section - unchanged */}
                                 <AppBar
                                         position="static"
                                         elevation={0}
@@ -199,7 +197,6 @@ export default function FullWidthTabs() {
                                         }}
                                         className="md:px-4"
                                 >
-                                        {/* Tabs remain unchanged */}
                                         <Tabs
                                                 value={value}
                                                 onChange={handleChange}
@@ -207,10 +204,9 @@ export default function FullWidthTabs() {
                                                 indicatorColor="secondary"
                                                 variant="fullWidth"
                                                 sx={{
-                                                        // Existing styles remain unchanged
                                                         minHeight: '70px',
                                                         '& .MuiTab-root': {
-                                                                fontSize: { xs: '0.9rem', md: '1rem' },
+                                                                fontSize: { xs: '0.8rem', md: '1rem' },
                                                                 fontWeight: '600',
                                                                 color: '#94a3b8',
                                                                 textTransform: 'none',
@@ -246,18 +242,19 @@ export default function FullWidthTabs() {
                                         >
                                                 <Tab
                                                         icon={
-                                                                <Code className="mb-2 w-5 h-5 transition-all duration-300" />
+                                                                <Briefcase className="mb-2 w-5 h-5 transition-all duration-300" />
                                                         }
-                                                        label="Projects"
+                                                        label="Experience"
                                                         {...a11yProps(0)}
                                                 />
                                                 <Tab
                                                         icon={
-                                                                <Award className="mb-2 w-5 h-5 transition-all duration-300" />
+                                                                <Code className="mb-2 w-5 h-5 transition-all duration-300" />
                                                         }
-                                                        label="Certificates"
+                                                        label="Projects"
                                                         {...a11yProps(1)}
                                                 />
+
                                                 <Tab
                                                         icon={
                                                                 <Boxes className="mb-2 w-5 h-5 transition-all duration-300" />
@@ -274,6 +271,10 @@ export default function FullWidthTabs() {
                                         onChangeIndex={setValue}
                                 >
                                         <TabPanel value={value} index={0} dir={theme.direction}>
+                                                <WorkExperience />
+                                        </TabPanel>
+
+                                        <TabPanel value={value} index={1} dir={theme.direction}>
                                                 <div className="container mx-auto flex justify-center items-center overflow-hidden">
                                                         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 2xl:grid-cols-3 gap-5">
                                                                 {displayedProjects.map((project, index) => (
@@ -312,44 +313,6 @@ export default function FullWidthTabs() {
                                                                 <ToggleButton
                                                                         onClick={() => toggleShowMore('projects')}
                                                                         isShowingMore={showAllProjects}
-                                                                />
-                                                        </div>
-                                                )}
-                                        </TabPanel>
-
-                                        <TabPanel value={value} index={1} dir={theme.direction}>
-                                                <div className="container mx-auto flex justify-center items-center overflow-hidden">
-                                                        <div className="grid grid-cols-1 md:grid-cols-3 md:gap-5 gap-4">
-                                                                {displayedCertificates.map((certificate, index) => (
-                                                                        <div
-                                                                                key={index}
-                                                                                data-aos={
-                                                                                        index % 3 === 0
-                                                                                                ? 'fade-up-right'
-                                                                                                : index % 3 === 1
-                                                                                                ? 'fade-up'
-                                                                                                : 'fade-up-left'
-                                                                                }
-                                                                                data-aos-duration={
-                                                                                        index % 3 === 0
-                                                                                                ? '1000'
-                                                                                                : index % 3 === 1
-                                                                                                ? '1200'
-                                                                                                : '1000'
-                                                                                }
-                                                                        >
-                                                                                <Certificate
-                                                                                        ImgSertif={certificate.Img}
-                                                                                />
-                                                                        </div>
-                                                                ))}
-                                                        </div>
-                                                </div>
-                                                {certificatesData.length > initialItems && (
-                                                        <div className="mt-6 w-full flex justify-start">
-                                                                <ToggleButton
-                                                                        onClick={() => toggleShowMore('certificates')}
-                                                                        isShowingMore={showAllCertificates}
                                                                 />
                                                         </div>
                                                 )}

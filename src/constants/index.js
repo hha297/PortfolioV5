@@ -22,9 +22,47 @@ import {
         ThreeDPortfolio,
         Docs,
         Funroad,
+        MeetAI,
 } from './assets/projects/index.js';
 
 export const projectsData = [
+        {
+                id: 'meet-ai',
+                Img: MeetAI,
+                Title: 'Meet AI',
+                Description:
+                        'Meet.ai is a GPT-powered video meeting assistant built with cutting-edge AI tech. It automatically records, transcribes, summarizes, and answers questions about your meetings — all while running in the background. ',
+                Link: 'https://meet-ai-zeta.vercel.app/',
+                github: 'https://github.com/hha297/Meet.ai',
+                TechStack: [
+                        'Next.js 15',
+                        'React 19',
+                        'Tailwind CSS v4',
+                        'Shadcn/ui',
+                        'Stream Video',
+                        'Stream Chat',
+                        'Inngest',
+                        'OpenAI',
+                        'CodeRabbit',
+                        'Polar',
+                        'Neon PostgreSQL',
+                        'Better Auth',
+                ],
+
+                Features: [
+                        '🎥 Meeting Recording: Join and record meetings through browser, capturing high-quality audio/video.',
+                        '✍️ Real-Time Transcription: Automatically transcribe your meetings using AssemblyAI.',
+                        '🧠 GPT Summarization: Get concise, context-aware summaries using OpenAI GPT.',
+                        '❓ Smart Q&A: Ask questions about the meeting and get intelligent answers.',
+                        '📅 Meeting History: See and manage your past meetings with transcripts and summaries.',
+                        '🔐 Authentication: Secure login and user sessions powered by Clerk.',
+                        '⚡ Convex Backend: Lightning-fast backend with Convex for real-time sync.',
+                        '🎨 Modern UI: Built with ShadcnUI and TailwindCSS for clean, responsive design.',
+                        '📁 Transcript Download: Export transcripts in .txt or .pdf format.',
+                        '📌 Timestamp Navigation: Jump to key points in the transcript via clickable timestamps.',
+                        '🌐 Multi-meeting Support: Handle multiple meetings and store them for later reference.',
+                ],
+        },
         {
                 id: 'funroad',
                 Img: Funroad,
