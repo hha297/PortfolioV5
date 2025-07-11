@@ -14,8 +14,8 @@ import TechStackIcon from '../components/TechStackIcon.jsx';
 import WorkExperience from '../components/WorkExperience.jsx';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
-import Certificate from '../components/Certificate.jsx';
-import { Code, Award, Boxes, Briefcase } from 'lucide-react';
+
+import { Code, Boxes, Briefcase } from 'lucide-react';
 import { certificatesData, projectsData } from '../constants/index.js';
 
 // Separate ShowMore/ShowLess button component
@@ -105,16 +105,16 @@ function a11yProps(index) {
 const techStacks = [
         { icon: 'html.svg', language: 'HTML' },
         { icon: 'css.svg', language: 'CSS' },
+        { icon: 'tailwind.svg', language: 'TailwindCSS' },
         { icon: 'javascript.svg', language: 'JavaScript' },
-        { icon: 'reactjs.svg', language: 'ReactJS' },
+        { icon: 'typescript.svg', language: 'Typescript' },
+        { icon: 'nextjs.svg', language: 'Next.js' },
+        { icon: 'reactjs.svg', language: 'React.js' },
         { icon: 'reactjs.svg', language: 'React Native' },
-        { icon: 'nextjs.svg', language: 'NextJS' },
-        { icon: 'tailwind.svg', language: 'Tailwind CSS' },
-        { icon: 'vite.svg', language: 'Vite' },
-        { icon: 'nodejs.svg', language: 'Node JS' },
-        { icon: 'bootstrap.svg', language: 'Bootstrap' },
-        { icon: 'firebase.svg', language: 'Firebase' },
-        { icon: 'vercel.svg', language: 'Vercel' },
+        { icon: 'nodejs.svg', language: 'Node.js' },
+        { icon: 'mongodb.svg', language: 'MongoDB' },
+        { icon: 'mysql.svg', language: 'MySQL' },
+        { icon: 'postgresql.svg', language: 'PostgreSQL' },
 ];
 
 export default function FullWidthTabs() {
@@ -191,7 +191,7 @@ export default function FullWidthTabs() {
                                                         right: 0,
                                                         bottom: 0,
                                                         background: 'linear-gradient(180deg, rgba(139, 92, 246, 0.03) 0%, rgba(59, 130, 246, 0.03) 100%)',
-                                                        backdropFilter: 'blur(10px)',
+
                                                         zIndex: 0,
                                                 },
                                         }}
@@ -242,16 +242,16 @@ export default function FullWidthTabs() {
                                         >
                                                 <Tab
                                                         icon={
-                                                                <Briefcase className="mb-2 w-5 h-5 transition-all duration-300" />
+                                                                <Code className="mb-2 w-5 h-5 transition-all duration-300" />
                                                         }
-                                                        label="Experience"
+                                                        label="Projects"
                                                         {...a11yProps(0)}
                                                 />
                                                 <Tab
                                                         icon={
-                                                                <Code className="mb-2 w-5 h-5 transition-all duration-300" />
+                                                                <Briefcase className="mb-2 w-5 h-5 transition-all duration-300" />
                                                         }
-                                                        label="Projects"
+                                                        label="Experience"
                                                         {...a11yProps(1)}
                                                 />
 
@@ -271,11 +271,7 @@ export default function FullWidthTabs() {
                                         onChangeIndex={setValue}
                                 >
                                         <TabPanel value={value} index={0} dir={theme.direction}>
-                                                <WorkExperience />
-                                        </TabPanel>
-
-                                        <TabPanel value={value} index={1} dir={theme.direction}>
-                                                <div className="container mx-auto flex justify-center items-center overflow-hidden">
+                                                <div className="container mx-auto flex justify-center items-center overflow-hidden mt-3">
                                                         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 2xl:grid-cols-3 gap-5">
                                                                 {displayedProjects.map((project, index) => (
                                                                         <div
@@ -308,6 +304,7 @@ export default function FullWidthTabs() {
                                                                 ))}
                                                         </div>
                                                 </div>
+
                                                 {projectsData.length > initialItems && (
                                                         <div className="mt-6 w-full flex justify-start">
                                                                 <ToggleButton
@@ -317,9 +314,11 @@ export default function FullWidthTabs() {
                                                         </div>
                                                 )}
                                         </TabPanel>
-
+                                        <TabPanel value={value} index={1} dir={theme.direction}>
+                                                <WorkExperience />
+                                        </TabPanel>
                                         <TabPanel value={value} index={2} dir={theme.direction}>
-                                                <div className="container mx-auto flex justify-center items-center overflow-hidden pb-[5%]">
+                                                <div className="container mx-auto flex justify-center items-center overflow-hidden mt-3">
                                                         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 lg:gap-8 gap-5">
                                                                 {techStacks.map((stack, index) => (
                                                                         <div

@@ -8,7 +8,7 @@ import 'aos/dist/aos.css';
 import toast from 'react-hot-toast';
 
 const Comment = memo(({ comment, formatDate, index }) => (
-        <div className="px-4 pt-4 pb-2 rounded-xl bg-white/5 border border-white/10 hover:bg-white/10 transition-all group hover:shadow-lg hover:-translate-y-0.5">
+        <div className="px-2 pt-4 pb-2 rounded-xl bg-white/5 border border-white/10 hover:bg-white/10 transition-all group hover:shadow-lg hover:-translate-y-0.5">
                 <div className="flex items-start gap-3 ">
                         {comment.profileImage ? (
                                 <img
@@ -268,7 +268,7 @@ const Comments = () => {
 
         return (
                 <div
-                        className="w-full bg-gradient-to-b from-white/10 to-white/5 rounded-2xl overflow-hidden backdrop-blur-xl shadow-xl"
+                        className="w-full h-full bg-gradient-to-b from-white/10 to-white/5 rounded-2xl overflow-hidden backdrop-blur-xl shadow-xl"
                         data-aos="fade-up"
                         data-aos-duration="1000"
                 >
@@ -302,7 +302,7 @@ const Comments = () => {
                                 </div>
 
                                 <div
-                                        className="space-y-4 h-[300px] overflow-y-auto custom-scrollbar"
+                                        className="space-y-4 h-[250px] sm:h-[500px] overflow-y-auto custom-scrollbar"
                                         data-aos="fade-up"
                                         data-aos-delay="200"
                                 >

@@ -11,7 +11,8 @@ import {
         TimelineOppositeContent,
 } from '@mui/lab';
 import { Box, Typography, Chip, Card, CardContent, Collapse, IconButton } from '@mui/material';
-import { Code, Laptop, ExpandMore, ExpandLess } from '@mui/icons-material';
+import { ExpandMore, ExpandLess } from '@mui/icons-material';
+import { Code2Icon, MapPinIcon } from 'lucide-react';
 
 const workExperienceData = [
         {
@@ -29,7 +30,7 @@ const workExperienceData = [
                         'Created AI chatbot to enhance user interaction and support functionalities',
                 ],
                 technologies: ['Next.js', 'ShadcnUI', 'Zustand', 'VIPPS', 'Paytrail', 'MQTT API', 'Mistral AI'],
-                icon: <Code />,
+                icon: <Code2Icon />,
                 color: '#6366f1',
         },
         {
@@ -47,7 +48,7 @@ const workExperienceData = [
                         'Deployed web applications on Firebase Hosting',
                 ],
                 technologies: ['React.js', 'Redux', 'RESTful APIs', 'Firebase', 'Stripe'],
-                icon: <Laptop />,
+                icon: <Code2Icon />,
                 color: '#a855f7',
         },
 ];
@@ -61,26 +62,9 @@ const WorkExperience = () => {
                                 width: '100%',
                                 maxWidth: '1200px',
                                 margin: '0 auto',
-                                padding: { xs: 2, md: 4 },
+                                mt: 2,
                         }}
                 >
-                        <Typography
-                                variant="h3"
-                                component="h2"
-                                sx={{
-                                        textAlign: 'center',
-                                        mb: 6,
-                                        fontSize: { xs: '2rem', md: '3rem' },
-                                        fontWeight: 'bold',
-                                        background: 'linear-gradient(45deg, #6366f1 10%, #a855f7 93%)',
-                                        WebkitBackgroundClip: 'text',
-                                        backgroundClip: 'text',
-                                        WebkitTextFillColor: 'transparent',
-                                }}
-                        >
-                                Work Experience
-                        </Typography>
-
                         {/* Desktop Timeline */}
                         <Box sx={{ display: { xs: 'none', md: 'block' } }}>
                                 <Timeline position="alternate" sx={{ padding: 0 }}>
@@ -90,11 +74,8 @@ const WorkExperience = () => {
                                                         <TimelineItem key={experience.id}>
                                                                 <TimelineOppositeContent
                                                                         sx={{
-                                                                                // Thay đổi từ 'auto 0' thành 'flex-start' để align với top của timeline dot
                                                                                 m: '0',
-                                                                                // Thêm padding top để align với center của timeline dot
-                                                                                pt: '18px', // Điều chỉnh giá trị này để căn chỉnh chính xác
-                                                                                // Đảm bảo content không stretch
+
                                                                                 display: 'flex',
                                                                                 flexDirection: 'column',
                                                                                 alignItems:
@@ -198,13 +179,15 @@ const WorkExperience = () => {
                                                                                                 {experience.company}
                                                                                         </Typography>
                                                                                         <Typography
+                                                                                                className="flex items-center"
                                                                                                 variant="body2"
                                                                                                 sx={{
                                                                                                         color: '#94a3b8',
                                                                                                         mb: 2,
                                                                                                 }}
                                                                                         >
-                                                                                                📍 {experience.location}
+                                                                                                <MapPinIcon className="size-4 mr-1" />
+                                                                                                {experience.location}
                                                                                         </Typography>
                                                                                         <Typography
                                                                                                 variant="body1"
@@ -228,7 +211,6 @@ const WorkExperience = () => {
                                                                                                         }
                                                                                                         sx={{
                                                                                                                 color: '#e2e8f0',
-                                                                                                                ml: 1,
                                                                                                         }}
                                                                                                 >
                                                                                                         {isOpen ? (
@@ -326,53 +308,110 @@ const WorkExperience = () => {
                         </Box>
 
                         {/* Mobile Horizontal Scroll Cards */}
-                        <Box
-                                sx={{
-                                        display: { xs: 'block', md: 'none' },
-                                        pb: 4,
-                                }}
-                        >
-                                {workExperienceData.map((exp) => (
-                                        <Card
-                                                key={exp.id}
-                                                sx={{
-                                                        width: '100%',
-                                                        mb: 3,
-                                                        background: 'linear-gradient(135deg, rgba(139, 92, 246, 0.1), rgba(59, 130, 246, 0.1))',
-                                                        border: '1px solid rgba(255, 255, 255, 0.1)',
-                                                        borderRadius: '16px',
-                                                        p: 2,
-                                                }}
-                                        >
-                                                <Typography variant="h6" sx={{ color: exp.color, fontWeight: 600 }}>
-                                                        {exp.company}
-                                                </Typography>
-                                                <Typography variant="body2" sx={{ color: '#94a3b8' }}>
-                                                        {exp.position}
-                                                </Typography>
-                                                <Typography variant="body2" sx={{ color: '#94a3b8', mb: 2 }}>
-                                                        {exp.period}
-                                                </Typography>
-                                                <Typography variant="body2" sx={{ color: '#cbd5e1', mb: 1 }}>
-                                                        📍 {exp.location}
-                                                </Typography>
-                                                <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 1 }}>
-                                                        {exp.technologies.map((tech, idx) => (
-                                                                <Chip
-                                                                        key={idx}
-                                                                        label={tech}
-                                                                        size="small"
+                        <Box sx={{ display: { xs: 'block', md: 'none' }, pb: 4 }}>
+                                {workExperienceData.map((exp, index) => {
+                                        const isOpen = openIndex === index;
+
+                                        return (
+                                                <Card
+                                                        key={exp.id}
+                                                        sx={{
+                                                                width: '100%',
+                                                                mb: 3,
+                                                                background: 'linear-gradient(135deg, rgba(139, 92, 246, 0.1), rgba(59, 130, 246, 0.1))',
+                                                                border: '1px solid rgba(255, 255, 255, 0.1)',
+                                                                borderRadius: '16px',
+                                                                p: 2,
+                                                        }}
+                                                >
+                                                        <Typography
+                                                                variant="h6"
+                                                                sx={{ color: exp.color, fontWeight: 600 }}
+                                                        >
+                                                                {exp.company}
+                                                        </Typography>
+                                                        <Typography variant="body2" sx={{ color: '#94a3b8' }}>
+                                                                {exp.position}
+                                                        </Typography>
+                                                        <Typography variant="body2" sx={{ color: '#94a3b8', mb: 2 }}>
+                                                                {exp.period}
+                                                        </Typography>
+                                                        <Typography
+                                                                className="flex items-center"
+                                                                variant="body2"
+                                                                sx={{ color: '#cbd5e1', mb: 1 }}
+                                                        >
+                                                                <MapPinIcon className="size-4 mr-1" /> {exp.location}
+                                                        </Typography>
+
+                                                        <Typography
+                                                                variant="body1"
+                                                                sx={{
+                                                                        color: '#e2e8f0',
+                                                                        fontWeight: 600,
+                                                                        display: 'flex',
+                                                                        alignItems: 'center',
+                                                                        cursor: 'pointer',
+                                                                        mb: 1,
+                                                                }}
+                                                                onClick={() => setOpenIndex(isOpen ? null : index)}
+                                                        >
+                                                                Key Responsibilities
+                                                                <IconButton size="small" sx={{ color: '#e2e8f0' }}>
+                                                                        {isOpen ? <ExpandLess /> : <ExpandMore />}
+                                                                </IconButton>
+                                                        </Typography>
+
+                                                        <Collapse in={isOpen}>
+                                                                <Box
+                                                                        component="ul"
                                                                         sx={{
-                                                                                backgroundColor:
-                                                                                        'rgba(255, 255, 255, 0.1)',
-                                                                                color: '#e2e8f0',
-                                                                                border: '1px solid rgba(255, 255, 255, 0.2)',
+                                                                                mb: 2,
+                                                                                listStyleType: 'disc',
+                                                                                listStylePosition: 'inside',
                                                                         }}
-                                                                />
-                                                        ))}
-                                                </Box>
-                                        </Card>
-                                ))}
+                                                                >
+                                                                        {exp.responsibilities.map((r, idx) => (
+                                                                                <Typography
+                                                                                        key={idx}
+                                                                                        component="li"
+                                                                                        variant="body2"
+                                                                                        sx={{
+                                                                                                color: '#cbd5e1',
+                                                                                                mb: 1,
+                                                                                                lineHeight: 1.6,
+                                                                                        }}
+                                                                                >
+                                                                                        {r}
+                                                                                </Typography>
+                                                                        ))}
+                                                                </Box>
+                                                        </Collapse>
+
+                                                        <Typography
+                                                                variant="body1"
+                                                                sx={{ color: '#e2e8f0', fontWeight: 600, mb: 1 }}
+                                                        >
+                                                                Technologies Used:
+                                                        </Typography>
+                                                        <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 1 }}>
+                                                                {exp.technologies.map((tech, idx) => (
+                                                                        <Chip
+                                                                                key={idx}
+                                                                                label={tech}
+                                                                                size="small"
+                                                                                sx={{
+                                                                                        backgroundColor:
+                                                                                                'rgba(255, 255, 255, 0.1)',
+                                                                                        color: '#e2e8f0',
+                                                                                        border: '1px solid rgba(255, 255, 255, 0.2)',
+                                                                                }}
+                                                                        />
+                                                                ))}
+                                                        </Box>
+                                                </Card>
+                                        );
+                                })}
                         </Box>
                 </Box>
         );

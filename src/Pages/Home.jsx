@@ -83,8 +83,8 @@ const SocialLink = memo(({ icon: Icon, link }) => (
 const TYPING_SPEED = 100;
 const ERASING_SPEED = 50;
 const PAUSE_DURATION = 2000;
-const WORDS = ['IT Student', 'Tech Enthusiast'];
-const TECH_STACK = ['React', 'Javascript', 'Next.js', 'Node.js', 'TailwindCSS'];
+const WORDS = ['Junior Developer', 'Tech Enthusiast', 'IT Explorer'];
+const TECH_STACK = ['Javascript', 'Typescript', 'React.js', 'Next.js', 'TailwindCSS', 'Node.js', 'MongoDB'];
 const SOCIAL_LINKS = [
         { icon: Github, link: 'https://github.com/hha297' },
         {

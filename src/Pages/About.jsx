@@ -6,7 +6,7 @@ import { certificatesData, projectsData } from '../constants/index.js';
 
 // Memoized Components
 const Header = memo(() => (
-        <div className="text-center lg:mb-8 mb-2 px-[5%]">
+        <div className="text-center lg:mb-8 mb-2">
                 <div className="inline-block relative group">
                         <h2
                                 className="text-4xl md:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-[#6366f1] to-[#a855f7]"
@@ -17,13 +17,13 @@ const Header = memo(() => (
                         </h2>
                 </div>
                 <p
-                        className="mt-2 text-gray-400 max-w-2xl mx-auto text-base sm:text-lg flex items-center justify-center gap-2"
+                        className="mt-2 text-gray-400 max-w-2xl text-sm sm:text-lg gap-2 mx-auto flex items-center justify-center line-clamp-1 overflow-hidden"
                         data-aos="zoom-in-up"
                         data-aos-duration="800"
                 >
-                        <Sparkles className="w-5 h-5 text-purple-400" />
-                        Let's Transform Your Idea Into Digital Reality.
-                        <Sparkles className="w-5 h-5 text-purple-400" />
+                        <Sparkles className="size-4 text-purple-400" />
+                        <p>{'<ThereIsAlwaysOneMoreBugToFix />'}</p>
+                        <Sparkles className="size-4 text-purple-400" />
                 </p>
         </div>
 ));
@@ -156,35 +156,35 @@ const AboutPage = () => {
         }, []);
 
         // Memoized stats data
-        const statsData = useMemo(
-                () => [
-                        {
-                                icon: Code,
-                                color: 'from-[#6366f1] to-[#a855f7]',
-                                value: totalProjects,
-                                label: 'Total Projects',
-                                description: 'Innovative web solutions crafted',
-                                animation: 'fade-right',
-                        },
-                        {
-                                icon: Award,
-                                color: 'from-[#a855f7] to-[#6366f1]',
-                                value: totalCertificates,
-                                label: 'Certificates',
-                                description: 'Professional skills validated',
-                                animation: 'fade-up',
-                        },
-                        {
-                                icon: Globe,
-                                color: 'from-[#6366f1] to-[#a855f7]',
-                                value: YearExperience,
-                                label: 'Years of Experience',
-                                description: 'Continuous learning journey',
-                                animation: 'fade-left',
-                        },
-                ],
-                [totalProjects, totalCertificates, YearExperience],
-        );
+        // const statsData = useMemo(
+        //         () => [
+        //                 {
+        //                         icon: Code,
+        //                         color: 'from-[#6366f1] to-[#a855f7]',
+        //                         value: totalProjects,
+        //                         label: 'Total Projects',
+        //                         description: 'Innovative web solutions crafted',
+        //                         animation: 'fade-right',
+        //                 },
+        //                 {
+        //                         icon: Award,
+        //                         color: 'from-[#a855f7] to-[#6366f1]',
+        //                         value: totalCertificates,
+        //                         label: 'Certificates',
+        //                         description: 'Professional skills validated',
+        //                         animation: 'fade-up',
+        //                 },
+        //                 {
+        //                         icon: Globe,
+        //                         color: 'from-[#6366f1] to-[#a855f7]',
+        //                         value: YearExperience,
+        //                         label: 'Years of Experience',
+        //                         description: 'Continuous learning journey',
+        //                         animation: 'fade-left',
+        //                 },
+        //         ],
+        //         [totalProjects, totalCertificates, YearExperience],
+        // );
 
         return (
                 <div
@@ -209,7 +209,7 @@ const AboutPage = () => {
                                                                 data-aos="fade-right"
                                                                 data-aos-duration="1300"
                                                         >
-                                                                Dang Hoang Ha
+                                                                Hoang Ha Dang
                                                         </span>
                                                 </h2>
 
@@ -259,13 +259,13 @@ const AboutPage = () => {
                                         <ProfileImage />
                                 </div>
 
-                                <a href="#Portofolio">
+                                {/* <a href="#Portofolio">
                                         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-16 cursor-pointer">
                                                 {statsData.map((stat) => (
                                                         <StatCard key={stat.label} {...stat} />
                                                 ))}
                                         </div>
-                                </a>
+                                </a> */}
                         </div>
 
                         <style jsx>{`
