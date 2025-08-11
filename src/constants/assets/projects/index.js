@@ -10,5 +10,19 @@ import Jira from './jira.png';
 import Docs from './docs.png';
 import Funroad from './funroad.png';
 import MeetAI from './meetai.png';
+import Snapcast from './snapcast.png';
 
-export { ThreeDPortfolio, Imaginify, Moview, Slack, Snapshot, BlaugranaFurniture, Ryder, Jira, Docs, Funroad, MeetAI };
+export {
+        ThreeDPortfolio,
+        Imaginify,
+        Moview,
+        Slack,
+        Snapshot,
+        BlaugranaFurniture,
+        Ryder,
+        Jira,
+        Docs,
+        Funroad,
+        MeetAI,
+        Snapcast,
+};
