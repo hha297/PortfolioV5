@@ -12,6 +12,7 @@ import Funroad from './funroad.png';
 import MeetAI from './meetai.png';
 import Snapcast from './snapcast.png';
 import Echo from './echo.png';
+import Mindspace from './mindspace.png';
 
 export {
         ThreeDPortfolio,
@@ -27,4 +28,5 @@ export {
         MeetAI,
         Snapcast,
         Echo,
+        Mindspace,
 };
