@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState, useCallback } from 'react';
+import { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import SwipeableViews from 'react-swipeable-views';
 import { useTheme } from '@mui/material/styles';
@@ -9,67 +9,14 @@ import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
-import CardProject from '../components/CardProject.jsx';
 import TechStackIcon from '../components/TechStackIcon.jsx';
 import WorkExperience from '../components/WorkExperience.jsx';
+import ProjectsPagination from '../components/ProjectsPagination.jsx';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 
 import { Code, Boxes, Briefcase } from 'lucide-react';
-import { certificatesData, projectsData } from '../constants/index.js';
-
-// Separate ShowMore/ShowLess button component
-const ToggleButton = ({ onClick, isShowingMore }) => (
-        <button
-                onClick={onClick}
-                className="
-      px-3 py-1.5
-      text-slate-300 
-      hover:text-white 
-      text-sm 
-      font-medium 
-      transition-all 
-      duration-300 
-      ease-in-out
-      flex 
-      items-center 
-      gap-2
-      bg-white/5 
-      hover:bg-white/10
-      rounded-md
-      border 
-      border-white/10
-      hover:border-white/20
-      backdrop-blur-sm
-      group
-      relative
-      overflow-hidden
-    "
-        >
-                <span className="relative z-10 flex items-center gap-2">
-                        {isShowingMore ? 'See Less' : 'See More'}
-                        <svg
-                                xmlns="http://www.w3.org/2000/svg"
-                                width="16"
-                                height="16"
-                                viewBox="0 0 24 24"
-                                fill="none"
-                                stroke="currentColor"
-                                strokeWidth="2"
-                                strokeLinecap="round"
-                                strokeLinejoin="round"
-                                className={`transition-transform duration-300 ease-in-out ${
-                                        isShowingMore
-                                                ? 'rotate-180 group-hover:-translate-y-0.5'
-                                                : 'group-hover:translate-y-0.5'
-                                }`}
-                        >
-                                <polyline points={isShowingMore ? '18 15 12 9 6 15' : '6 9 12 15 18 9'}></polyline>
-                        </svg>
-                </span>
-                <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-purple-500/50 transition-all duration-300 group-hover:w-full"></span>
-        </button>
-);
+import { projectsData } from '../constants/index.js';
 
 function TabPanel({ children, value, index, ...other }) {
         return (
@@ -121,11 +68,6 @@ export default function FullWidthTabs() {
         const theme = useTheme();
         const [value, setValue] = useState(0);
 
-        const [showAllProjects, setShowAllProjects] = useState(false);
-        const [showAllCertificates, setShowAllCertificates] = useState(false);
-        const isMobile = window.innerWidth < 768;
-        const initialItems = isMobile ? 4 : 6;
-
         useEffect(() => {
                 AOS.init({
                         once: false,
@@ -135,17 +77,6 @@ export default function FullWidthTabs() {
         const handleChange = (event, newValue) => {
                 setValue(newValue);
         };
-
-        const toggleShowMore = useCallback((type) => {
-                if (type === 'projects') {
-                        setShowAllProjects((prev) => !prev);
-                } else {
-                        setShowAllCertificates((prev) => !prev);
-                }
-        }, []);
-
-        const displayedProjects = showAllProjects ? projectsData : projectsData.slice(0, initialItems);
-        const displayedCertificates = showAllCertificates ? certificatesData : certificatesData.slice(0, initialItems);
 
         return (
                 <div
@@ -271,54 +202,13 @@ export default function FullWidthTabs() {
                                         onChangeIndex={setValue}
                                 >
                                         <TabPanel value={value} index={0} dir={theme.direction}>
-                                                <div className="container mx-auto flex justify-center items-center overflow-hidden mt-3">
-                                                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 2xl:grid-cols-3 gap-5">
-                                                                {displayedProjects.map((project, index) => (
-                                                                        <div
-                                                                                key={project.id || index}
-                                                                                data-aos={
-                                                                                        index % 3 === 0
-                                                                                                ? 'fade-up-right'
-                                                                                                : index % 3 === 1
-                                                                                                ? 'fade-up'
-                                                                                                : 'fade-up-left'
-                                                                                }
-                                                                                data-aos-duration={
-                                                                                        index % 3 === 0
-                                                                                                ? '1000'
-                                                                                                : index % 3 === 1
-                                                                                                ? '1200'
-                                                                                                : '1000'
-                                                                                }
-                                                                        >
-                                                                                <CardProject
-                                                                                        Img={project.Img}
-                                                                                        Title={project.Title}
-                                                                                        Description={
-                                                                                                project.Description
-                                                                                        }
-                                                                                        Link={project.Link}
-                                                                                        id={project.id}
-                                                                                />
-                                                                        </div>
-                                                                ))}
-                                                        </div>
-                                                </div>
-
-                                                {projectsData.length > initialItems && (
-                                                        <div className="mt-6 w-full flex justify-start">
-                                                                <ToggleButton
-                                                                        onClick={() => toggleShowMore('projects')}
-                                                                        isShowingMore={showAllProjects}
-                                                                />
-                                                        </div>
-                                                )}
+                                                <ProjectsPagination projectsData={projectsData} />
                                         </TabPanel>
                                         <TabPanel value={value} index={1} dir={theme.direction}>
                                                 <WorkExperience />
                                         </TabPanel>
                                         <TabPanel value={value} index={2} dir={theme.direction}>
-                                                <div className="container mx-auto flex justify-center items-center overflow-hidden mt-3">
+                                                <div className="w-full mt-3">
                                                         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 lg:gap-8 gap-5">
                                                                 {techStacks.map((stack, index) => (
                                                                         <div

@@ -11,6 +11,7 @@ import Docs from './docs.png';
 import Funroad from './funroad.png';
 import MeetAI from './meetai.png';
 import Snapcast from './snapcast.png';
+import Echo from './echo.png';
 
 export {
         ThreeDPortfolio,
@@ -25,4 +26,5 @@ export {
         Funroad,
         MeetAI,
         Snapcast,
+        Echo,
 };

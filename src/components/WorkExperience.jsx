@@ -1,329 +1,529 @@
 'use client';
 
-import { useState } from 'react';
-import {
-        Timeline,
-        TimelineItem,
-        TimelineSeparator,
-        TimelineConnector,
-        TimelineContent,
-        TimelineDot,
-        TimelineOppositeContent,
-} from '@mui/lab';
-import {
-        Box,
-        Typography,
-        Chip,
-        Card,
-        CardContent,
-        Collapse,
-        Button,
-        Stack,
-        Link as MuiLink,
-        Paper,
-} from '@mui/material';
-import { ExpandMore, ExpandLess } from '@mui/icons-material';
-import { Code2Icon, MapPinIcon, GithubIcon, ExternalLinkIcon, StarIcon } from 'lucide-react';
-
-const MAX_VISIBLE_ITEMS = 3;
+import React, { useState } from 'react';
+import { Box, Typography, Chip, Card, CardContent, IconButton } from '@mui/material';
+import { ChevronLeft, ChevronRight } from '@mui/icons-material';
+import { MapPinIcon, CalendarIcon, BriefcaseIcon } from 'lucide-react';
+import SwipeableViews from 'react-swipeable-views';
+import { FactoriseLogo, BeiarntekLogo, KatchLogo } from '../constants/assets/company/index.js';
 
 const workExperienceData = [
         {
                 id: 1,
-                position: 'Front End Developer Trainee',
-                company: 'Beiarntek AS',
-                location: 'Moldjord, Norway',
-                period: 'February 2025 - August 2025',
-                type: 'Trainee',
+                position: 'Mobile Developer',
+                company: 'Factorise Technologies ApS',
+                location: 'Kolding, Denmark (Remote)',
+                period: 'August 2025 - Present',
+                type: 'Internship',
                 responsibilities: [
-                        'Managed source control repositories in GitLab and GitHub, ensuring version integrity',
-                        'Developed user-facing webpages with Next.js and ShadcnUI, implementing state management through Zustand',
-                        'Collaborated with back-end developers for seamless integration of UI components',
-                        'Integrated payment systems via VIPPS Mobile Pay - Paytrail and implemented locker system using MQTT API',
-                        'Created AI chatbot to enhance user interaction and support functionalities',
+                        'Develop and maintain mobile applications using React Native and modern mobile technologies',
+                        'Debug and fix critical bugs in mobile applications across iOS and Android platforms',
+                        'Implement responsive UI components and ensure optimal user experience on mobile devices',
+                        'Implement new features and enhancements for mobile applications',
+                        'Collaborate with backend developers to integrate mobile APIs and ensure seamless data flow',
+                        'Work with design teams to implement mobile-first UI designs',
                 ],
-                technologies: ['Next.js', 'ShadcnUI', 'Zustand', 'VIPPS', 'Paytrail', 'MQTT API', 'Mistral AI'],
-                icon: <Code2Icon />,
+                technologies: [
+                        'React Native',
+                        'TypeScript',
+                        'Expo',
+                        'Android',
+                        'Mobile UI/UX',
+                        'Git',
+                        'RESTful APIs',
+                        'Mobile Testing',
+                ],
+                icon: FactoriseLogo,
                 color: '#6366f1',
         },
         {
                 id: 2,
-                position: 'Full Stack Developer Trainee',
-                company: 'Katch Today Oy',
-                location: 'Espoo, Finland',
-                period: 'August 2024 - February 2025',
-                type: 'Trainee',
+                position: 'Front End Developer',
+                company: 'Beiarntek AS',
+                location: 'Moldjord, Norway (Remote)',
+                period: 'February 2025 - August 2025',
+                type: 'Internship',
                 responsibilities: [
-                        'Managed source control repositories including GitLab and GitHub',
-                        'Collaborated with UI and UX designers to ensure the best user experience',
-                        'Debugged and resolved issues related to React components',
-                        'Developed React applications using Redux state management and RESTful APIs',
-                        'Deployed web applications on Firebase Hosting',
+                        'Developed user-facing webpages with Next.js and ShadcnUI, implementing state management through Zustand',
+                        'Collaborated with back-end developers for seamless integration of UI components',
+                        'Managed source control repositories in GitLab and GitHub, ensuring version integrity',
+                        'Integrated payment systems via VIPPS Mobile Pay - Paytrail and implemented locker system using MQTT API',
+                        'Created AI chatbot to enhance user interaction and support functionalities',
                 ],
-                technologies: ['React.js', 'Redux', 'RESTful APIs', 'Firebase', 'Stripe'],
-                icon: <Code2Icon />,
+                technologies: ['Next.js', 'ShadcnUI', 'Zustand', 'VIPPS', 'Paytrail', 'Mistral AI', 'Git', 'UI/UX'],
+                icon: BeiarntekLogo,
                 color: '#a855f7',
         },
         {
                 id: 3,
-                position: 'Freelance Developer',
-                company: 'Upwork',
-                location: 'Remote',
-                period: 'Jun 2024 – Present',
-                type: 'Freelance',
-                color: '#22c55e',
-                icon: <Code2Icon />,
-                projects: [
-                        {
-                                title: 'Meet AI',
-                                description:
-                                        'AI-powered meeting assistant with real-time transcription and smart summaries',
-                                live: 'https://meet-ai-zeta.vercel.app/',
-                                github: 'https://github.com/hha297/Meet.ai',
-                                tech: [
-                                        'Next.js',
-                                        'React',
-                                        'Tailwind CSS',
-                                        'Shadcn/ui',
-                                        'Stream',
-                                        'Inngest',
-                                        'OpenAI',
-                                        'CodeRabbit',
-                                        'Polar',
-                                        'Neon PostgreSQL',
-                                        'Better Auth',
-                                ],
-                                featured: true,
-                        },
-                        {
-                                title: 'Funroad',
-                                description:
-                                        'Interactive e-commerce app where creators have their own storefronts, sell digital products,',
-                                live: 'https://funroad-iota.vercel.app/',
-                                github: 'https://github.com/hha297/Funroad',
-                                tech: [
-                                        'Next.js',
-                                        'React.js',
-                                        'TypeScript',
-                                        'TailwindCSS',
-                                        'MongoDB',
-                                        'Payload CMS',
-                                        'Stripe',
-                                ],
-                                featured: true,
-                        },
+                position: 'Full Stack Developer',
+                company: 'Katch Today Oy',
+                location: 'Espoo, Finland (Remote)',
+                period: 'August 2024 - February 2025',
+                type: 'Internship',
+                responsibilities: [
+                        'Developed React applications using Redux state management and RESTful APIs',
+                        'Debugged and resolved issues related to React components',
+                        'Deployed web applications on Firebase Hosting',
+                        'Managed source control repositories including GitLab and GitHub',
+                        'Collaborated with UI and UX designers to ensure the best user experience',
                 ],
+                technologies: ['React.js', 'Redux', 'RESTful APIs', 'Firebase', 'Stripe'],
+                icon: KatchLogo,
+                color: '#22c55e',
         },
 ];
 
 const WorkExperience = () => {
-        const [openIndex, setOpenIndex] = useState(null);
+        const [currentIndex, setCurrentIndex] = useState(0);
+        const [isMobile, setIsMobile] = useState(false);
 
-        const toggleIndex = (index) => {
-                setOpenIndex((prev) => (prev === index ? null : index));
+        // Check if mobile on mount and resize
+        React.useEffect(() => {
+                const checkMobile = () => {
+                        setIsMobile(window.innerWidth < 768);
+                };
+
+                checkMobile();
+                window.addEventListener('resize', checkMobile);
+
+                return () => window.removeEventListener('resize', checkMobile);
+        }, []);
+
+        const handleNext = () => {
+                setCurrentIndex((prev) => (prev + 1) % workExperienceData.length);
         };
 
-        const renderProjectCard = (project, color, index) => {
+        const handlePrev = () => {
+                setCurrentIndex((prev) => (prev - 1 + workExperienceData.length) % workExperienceData.length);
+        };
+
+        const handleChangeIndex = (index) => {
+                setCurrentIndex(index);
+        };
+
+        const renderExperienceCard = (experience) => {
                 return (
-                        <Paper
-                                key={`project-${index}`}
-                                elevation={0}
+                        <Box
+                                key={experience.id}
                                 sx={{
-                                        background: 'linear-gradient(135deg, rgba(34, 197, 94, 0.08), rgba(34, 197, 94, 0.04))',
-                                        border: '1px solid rgba(34, 197, 94, 0.2)',
-                                        borderRadius: '12px',
-                                        p: 3,
-                                        mb: 2,
-                                        position: 'relative',
-                                        overflow: 'hidden',
-                                        transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
-                                        '&:hover': {
-                                                transform: 'translateY(-2px)',
-                                                boxShadow: `0 8px 25px rgba(34, 197, 94, 0.15)`,
-                                                border: '1px solid rgba(34, 197, 94, 0.4)',
-                                                '& .project-links': {
-                                                        opacity: 1,
-                                                        transform: 'translateY(0)',
-                                                },
-                                        },
-                                        '&::before': {
-                                                content: '""',
-                                                position: 'absolute',
-                                                top: 0,
-                                                left: 0,
-                                                right: 0,
-                                                height: '3px',
-                                                background: `linear-gradient(90deg, ${color}, rgba(34, 197, 94, 0.6))`,
-                                                borderRadius: '12px 12px 0 0',
-                                        },
+                                        width: '100%',
+                                        height: '100%',
+                                        display: 'flex',
+                                        alignItems: 'center',
+                                        justifyContent: 'center',
+                                        px: { xs: 2, md: 4 },
                                 }}
                         >
-                                {project.featured && (
-                                        <Box
-                                                sx={{
-                                                        position: 'absolute',
-                                                        top: 12,
-                                                        right: 12,
-                                                        display: 'flex',
-                                                        alignItems: 'center',
-                                                        gap: 0.5,
-                                                        color: color,
-                                                        fontSize: '0.75rem',
-                                                        fontWeight: 600,
-                                                }}
-                                        >
-                                                <StarIcon size={14} />
-                                                Featured
-                                        </Box>
-                                )}
-
-                                <Typography
-                                        variant="h6"
+                                <Card
                                         sx={{
-                                                color: 'white',
-                                                fontWeight: 700,
-                                                mb: 1,
-                                                pr: project.featured ? 8 : 0,
-                                        }}
-                                >
-                                        {project.title}
-                                </Typography>
-
-                                <Typography
-                                        variant="body2"
-                                        sx={{
-                                                color: '#cbd5e1',
-                                                mb: 2,
-                                                lineHeight: 1.6,
-                                        }}
-                                >
-                                        {project.description}
-                                </Typography>
-
-                                <Box
-                                        sx={{
-                                                display: 'flex',
-                                                flexWrap: 'wrap',
-                                                gap: 0.8,
-                                                mb: 2,
-                                        }}
-                                >
-                                        {project.tech.map((tech, idx) => (
-                                                <Chip
-                                                        key={idx}
-                                                        label={tech}
-                                                        size="small"
-                                                        sx={{
-                                                                backgroundColor: 'rgba(34, 197, 94, 0.15)',
-                                                                color: '#22c55e',
-                                                                border: '1px solid rgba(34, 197, 94, 0.3)',
-                                                                fontSize: '0.75rem',
-                                                                height: '24px',
-                                                                '&:hover': {
-                                                                        backgroundColor: 'rgba(34, 197, 94, 0.25)',
-                                                                },
-                                                        }}
-                                                />
-                                        ))}
-                                </Box>
-
-                                <Stack
-                                        direction="row"
-                                        spacing={2}
-                                        className="project-links"
-                                        sx={{
-                                                opacity: 0.7,
-                                                transform: 'translateY(4px)',
+                                                width: '100%',
+                                                maxWidth: '800px',
+                                                background: `linear-gradient(135deg, ${experience.color}20, ${experience.color}10)`,
+                                                backdropFilter: 'blur(10px)',
+                                                border: `1px solid ${experience.color}40`,
+                                                borderRadius: '20px',
                                                 transition: 'all 0.3s ease',
+                                                '&:hover': {
+                                                        transform: 'translateY(-4px)',
+                                                        boxShadow: `0 10px 30px ${experience.color}30`,
+                                                        border: `1px solid ${experience.color}60`,
+                                                },
                                         }}
                                 >
-                                        <MuiLink
-                                                href={project.live}
-                                                target="_blank"
-                                                rel="noopener noreferrer"
-                                                underline="none"
-                                                sx={{
-                                                        display: 'inline-flex',
-                                                        alignItems: 'center',
-                                                        gap: 1,
-                                                        color: '#e2e8f0',
-                                                        fontSize: '0.875rem',
-                                                        fontWeight: 600,
-                                                        px: 2,
-                                                        py: 1,
-                                                        borderRadius: '8px',
-                                                        border: '1px solid rgba(255, 255, 255, 0.1)',
-                                                        transition: 'all 0.2s ease',
-                                                        '&:hover': {
-                                                                color: color,
-                                                                borderColor: color,
-                                                                backgroundColor: `${color}10`,
-                                                        },
-                                                }}
-                                        >
-                                                <ExternalLinkIcon size={16} />
-                                                Live Demo
-                                        </MuiLink>
+                                        <CardContent sx={{ p: { xs: 3, md: 4 } }}>
+                                                {/* Header */}
+                                                <Box sx={{ display: 'flex', alignItems: 'center', mb: 3 }}>
+                                                        <Box
+                                                                sx={{
+                                                                        width: 60,
+                                                                        height: 60,
+                                                                        borderRadius: '50%',
+                                                                        backgroundColor: experience.color,
+                                                                        display: 'flex',
+                                                                        alignItems: 'center',
+                                                                        justifyContent: 'center',
+                                                                        mr: 3,
+                                                                        boxShadow: `0 0 20px ${experience.color}40`,
+                                                                        overflow: 'hidden',
+                                                                }}
+                                                        >
+                                                                <img
+                                                                        src={experience.icon}
+                                                                        alt={`${experience.company} logo`}
+                                                                        style={{
+                                                                                width: '100%',
+                                                                                height: '100%',
+                                                                                objectFit: 'cover',
+                                                                        }}
+                                                                />
+                                                        </Box>
+                                                        <Box>
+                                                                <Typography
+                                                                        variant="h5"
+                                                                        sx={{
+                                                                                color: '#ffffff',
+                                                                                fontWeight: 'bold',
+                                                                                mb: 0.5,
+                                                                        }}
+                                                                >
+                                                                        {experience.position}
+                                                                </Typography>
+                                                                <Typography
+                                                                        variant="h6"
+                                                                        sx={{
+                                                                                color: experience.color,
+                                                                                fontWeight: '600',
+                                                                                mb: 0.5,
+                                                                        }}
+                                                                >
+                                                                        {experience.company}
+                                                                </Typography>
+                                                                <Box
+                                                                        sx={{
+                                                                                display: 'flex',
+                                                                                alignItems: 'center',
+                                                                                gap: 1,
+                                                                        }}
+                                                                >
+                                                                        <BriefcaseIcon size={16} color="#94a3b8" />
+                                                                        <Typography
+                                                                                variant="body2"
+                                                                                sx={{ color: '#94a3b8' }}
+                                                                        >
+                                                                                {experience.type}
+                                                                        </Typography>
+                                                                        <MapPinIcon size={16} color="#94a3b8" />
+                                                                        <Typography
+                                                                                variant="body2"
+                                                                                sx={{ color: '#94a3b8' }}
+                                                                        >
+                                                                                {experience.location}
+                                                                        </Typography>
+                                                                        <CalendarIcon size={16} color="#94a3b8" />
+                                                                        <Typography
+                                                                                variant="body2"
+                                                                                sx={{ color: '#94a3b8' }}
+                                                                        >
+                                                                                {experience.period}
+                                                                        </Typography>
+                                                                </Box>
+                                                        </Box>
+                                                </Box>
 
-                                        <MuiLink
-                                                href={project.github}
-                                                target="_blank"
-                                                rel="noopener noreferrer"
-                                                underline="none"
-                                                sx={{
-                                                        display: 'inline-flex',
-                                                        alignItems: 'center',
-                                                        gap: 1,
-                                                        color: '#e2e8f0',
-                                                        fontSize: '0.875rem',
-                                                        fontWeight: 600,
-                                                        px: 2,
-                                                        py: 1,
-                                                        borderRadius: '8px',
-                                                        border: '1px solid rgba(255, 255, 255, 0.1)',
-                                                        transition: 'all 0.2s ease',
-                                                        '&:hover': {
-                                                                color: '#cbd5e1',
-                                                                borderColor: '#cbd5e1',
-                                                                backgroundColor: 'rgba(255, 255, 255, 0.05)',
-                                                        },
-                                                }}
-                                        >
-                                                <GithubIcon size={16} />
-                                                Source Code
-                                        </MuiLink>
-                                </Stack>
-                        </Paper>
+                                                {/* Responsibilities */}
+                                                <Box sx={{ mb: 3 }}>
+                                                        <Typography
+                                                                variant="h6"
+                                                                sx={{
+                                                                        color: '#ffffff',
+                                                                        fontWeight: '600',
+                                                                        mb: 2,
+                                                                }}
+                                                        >
+                                                                Key Responsibilities:
+                                                        </Typography>
+                                                        <Box component="ul" sx={{ pl: 2, m: 0 }}>
+                                                                {experience.responsibilities.map((resp, idx) => (
+                                                                        <Typography
+                                                                                key={idx}
+                                                                                component="li"
+                                                                                variant="body2"
+                                                                                sx={{
+                                                                                        color: '#cbd5e1',
+                                                                                        mb: 1,
+                                                                                        lineHeight: 1.6,
+                                                                                        listStyleType: 'disc',
+                                                                                        '&::marker': {
+                                                                                                color: experience.color,
+                                                                                        },
+                                                                                }}
+                                                                        >
+                                                                                {resp}
+                                                                        </Typography>
+                                                                ))}
+                                                        </Box>
+                                                </Box>
+
+                                                {/* Technologies */}
+                                                <Box>
+                                                        <Typography
+                                                                variant="h6"
+                                                                sx={{
+                                                                        color: '#ffffff',
+                                                                        fontWeight: '600',
+                                                                        mb: 2,
+                                                                }}
+                                                        >
+                                                                Technologies Used:
+                                                        </Typography>
+                                                        <Box
+                                                                sx={{
+                                                                        display: 'flex',
+                                                                        flexWrap: 'wrap',
+                                                                        gap: 1,
+                                                                }}
+                                                        >
+                                                                {experience.technologies.map((tech, idx) => (
+                                                                        <Chip
+                                                                                key={idx}
+                                                                                label={tech}
+                                                                                size="small"
+                                                                                sx={{
+                                                                                        backgroundColor: `${experience.color}20`,
+                                                                                        color: experience.color,
+                                                                                        border: `1px solid ${experience.color}40`,
+                                                                                        '&:hover': {
+                                                                                                backgroundColor: `${experience.color}30`,
+                                                                                        },
+                                                                                }}
+                                                                        />
+                                                                ))}
+                                                        </Box>
+                                                </Box>
+                                        </CardContent>
+                                </Card>
+                        </Box>
                 );
         };
 
-        const renderProjectsList = (items, color, keyPrefix) => {
-                return <Box sx={{ mb: 1 }}>{items.map((project, idx) => renderProjectCard(project, color, idx))}</Box>;
-        };
-
-        const renderResponsibilitiesList = (items, color, keyPrefix) => {
+        // Mobile Timeline Layout
+        const renderMobileTimeline = () => {
                 return (
-                        <Box
-                                component="ul"
-                                sx={{
-                                        mb: 1,
-                                        listStyleType: 'disc',
-                                        listStylePosition: 'inside',
-                                }}
-                        >
-                                {items.map((r, idx) => (
-                                        <Typography
-                                                key={`${keyPrefix}${idx}`}
-                                                component="li"
-                                                variant="body2"
+                        <Box sx={{ width: '100%', px: 2 }}>
+                                {workExperienceData.map((experience) => (
+                                        <Card
+                                                key={experience.id}
                                                 sx={{
-                                                        color: '#cbd5e1',
-                                                        mb: 1,
-                                                        lineHeight: 1.6,
+                                                        mb: 3,
+                                                        background: `linear-gradient(135deg, ${experience.color}20, ${experience.color}10)`,
+                                                        backdropFilter: 'blur(10px)',
+                                                        border: `1px solid ${experience.color}40`,
+                                                        borderRadius: '16px',
+                                                        transition: 'all 0.3s ease',
+                                                        '&:hover': {
+                                                                transform: 'translateY(-2px)',
+                                                                boxShadow: `0 8px 25px ${experience.color}30`,
+                                                        },
                                                 }}
                                         >
-                                                {r}
-                                        </Typography>
+                                                <CardContent sx={{ p: 3 }}>
+                                                        {/* Header */}
+                                                        <Box sx={{ mb: 2 }}>
+                                                                {/* Logo and Title Row */}
+                                                                <Box
+                                                                        sx={{
+                                                                                display: 'flex',
+                                                                                alignItems: 'center',
+                                                                                mb: 1,
+                                                                        }}
+                                                                >
+                                                                        <Box
+                                                                                sx={{
+                                                                                        width: 40,
+                                                                                        height: 40,
+                                                                                        borderRadius: '50%',
+                                                                                        backgroundColor:
+                                                                                                experience.color,
+                                                                                        display: 'flex',
+                                                                                        alignItems: 'center',
+                                                                                        justifyContent: 'center',
+                                                                                        mr: 2,
+                                                                                        boxShadow: `0 0 15px ${experience.color}40`,
+                                                                                        overflow: 'hidden',
+                                                                                        flexShrink: 0,
+                                                                                }}
+                                                                        >
+                                                                                <img
+                                                                                        src={experience.icon}
+                                                                                        alt={`${experience.company} logo`}
+                                                                                        style={{
+                                                                                                width: '100%',
+                                                                                                height: '100%',
+                                                                                                objectFit: 'cover',
+                                                                                        }}
+                                                                                />
+                                                                        </Box>
+                                                                        <Box sx={{ flex: 1, minWidth: 0 }}>
+                                                                                <Typography
+                                                                                        variant="h6"
+                                                                                        sx={{
+                                                                                                color: '#ffffff',
+                                                                                                fontWeight: 'bold',
+                                                                                                mb: 0.5,
+                                                                                                fontSize: '1rem',
+                                                                                                lineHeight: 1.2,
+                                                                                        }}
+                                                                                >
+                                                                                        {experience.position}
+                                                                                </Typography>
+                                                                        </Box>
+                                                                </Box>
+
+                                                                {/* Company Name */}
+                                                                <Typography
+                                                                        variant="subtitle1"
+                                                                        sx={{
+                                                                                color: experience.color,
+                                                                                fontWeight: '600',
+                                                                                mb: 1,
+                                                                                fontSize: '0.9rem',
+                                                                        }}
+                                                                >
+                                                                        {experience.company}
+                                                                </Typography>
+
+                                                                {/* Type, Location and Period */}
+                                                                <Box
+                                                                        sx={{
+                                                                                display: 'flex',
+                                                                                flexDirection: 'column',
+                                                                                gap: 0.5,
+                                                                        }}
+                                                                >
+                                                                        <Box
+                                                                                sx={{
+                                                                                        display: 'flex',
+                                                                                        alignItems: 'center',
+                                                                                        gap: 1,
+                                                                                }}
+                                                                        >
+                                                                                <BriefcaseIcon
+                                                                                        size={14}
+                                                                                        color="#94a3b8"
+                                                                                />
+                                                                                <Typography
+                                                                                        variant="body2"
+                                                                                        sx={{
+                                                                                                color: '#94a3b8',
+                                                                                                fontSize: '0.75rem',
+                                                                                        }}
+                                                                                >
+                                                                                        {experience.type}
+                                                                                </Typography>
+                                                                        </Box>
+                                                                        <Box
+                                                                                sx={{
+                                                                                        display: 'flex',
+                                                                                        alignItems: 'center',
+                                                                                        gap: 1,
+                                                                                }}
+                                                                        >
+                                                                                <MapPinIcon size={14} color="#94a3b8" />
+                                                                                <Typography
+                                                                                        variant="body2"
+                                                                                        sx={{
+                                                                                                color: '#94a3b8',
+                                                                                                fontSize: '0.75rem',
+                                                                                        }}
+                                                                                >
+                                                                                        {experience.location}
+                                                                                </Typography>
+                                                                        </Box>
+                                                                        <Box
+                                                                                sx={{
+                                                                                        display: 'flex',
+                                                                                        alignItems: 'center',
+                                                                                        gap: 1,
+                                                                                }}
+                                                                        >
+                                                                                <CalendarIcon
+                                                                                        size={14}
+                                                                                        color="#94a3b8"
+                                                                                />
+                                                                                <Typography
+                                                                                        variant="body2"
+                                                                                        sx={{
+                                                                                                color: '#94a3b8',
+                                                                                                fontSize: '0.75rem',
+                                                                                        }}
+                                                                                >
+                                                                                        {experience.period}
+                                                                                </Typography>
+                                                                        </Box>
+                                                                </Box>
+                                                        </Box>
+
+                                                        {/* Responsibilities */}
+                                                        <Box sx={{ mb: 2 }}>
+                                                                <Typography
+                                                                        variant="subtitle2"
+                                                                        sx={{
+                                                                                color: '#ffffff',
+                                                                                fontWeight: '600',
+                                                                                mb: 1,
+                                                                        }}
+                                                                >
+                                                                        Key Responsibilities:
+                                                                </Typography>
+                                                                <Box component="ul" sx={{ pl: 2, m: 0 }}>
+                                                                        {experience.responsibilities
+                                                                                .slice(0, 3)
+                                                                                .map((resp, idx) => (
+                                                                                        <Typography
+                                                                                                key={idx}
+                                                                                                component="li"
+                                                                                                variant="body2"
+                                                                                                sx={{
+                                                                                                        color: '#cbd5e1',
+                                                                                                        mb: 0.5,
+                                                                                                        lineHeight: 1.4,
+                                                                                                        fontSize: '0.8rem',
+                                                                                                        listStyleType:
+                                                                                                                'disc',
+                                                                                                        '&::marker': {
+                                                                                                                color: experience.color,
+                                                                                                        },
+                                                                                                }}
+                                                                                        >
+                                                                                                {resp}
+                                                                                        </Typography>
+                                                                                ))}
+                                                                </Box>
+                                                        </Box>
+
+                                                        {/* Technologies */}
+                                                        <Box>
+                                                                <Typography
+                                                                        variant="subtitle2"
+                                                                        sx={{
+                                                                                color: '#ffffff',
+                                                                                fontWeight: '600',
+                                                                                mb: 1,
+                                                                        }}
+                                                                >
+                                                                        Technologies:
+                                                                </Typography>
+                                                                <Box
+                                                                        sx={{
+                                                                                display: 'flex',
+                                                                                flexWrap: 'wrap',
+                                                                                gap: 0.5,
+                                                                        }}
+                                                                >
+                                                                        {experience.technologies
+                                                                                .slice(0, 6)
+                                                                                .map((tech, idx) => (
+                                                                                        <Chip
+                                                                                                key={idx}
+                                                                                                label={tech}
+                                                                                                size="small"
+                                                                                                sx={{
+                                                                                                        backgroundColor: `${experience.color}20`,
+                                                                                                        color: experience.color,
+                                                                                                        border: `1px solid ${experience.color}40`,
+                                                                                                        fontSize: '0.7rem',
+                                                                                                        height: '24px',
+                                                                                                        '&:hover': {
+                                                                                                                backgroundColor: `${experience.color}30`,
+                                                                                                        },
+                                                                                                }}
+                                                                                        />
+                                                                                ))}
+                                                                </Box>
+                                                        </Box>
+                                                </CardContent>
+                                        </Card>
                                 ))}
                         </Box>
                 );
@@ -333,535 +533,97 @@ const WorkExperience = () => {
                 <Box
                         sx={{
                                 width: '100%',
-                                maxWidth: '1200px',
                                 margin: '0 auto',
                                 mt: 2,
+                                display: 'flex',
+                                flexDirection: 'column',
+                                alignItems: 'center',
                         }}
                 >
-                        {/* Desktop Timeline */}
-                        <Box sx={{ display: { xs: 'none', md: 'block' } }}>
-                                <Timeline position="alternate" sx={{ padding: 0 }}>
-                                        {workExperienceData.map((experience, index) => {
-                                                const isOpen = openIndex === index;
-
-                                                const hasProjects =
-                                                        Array.isArray(experience.projects) &&
-                                                        experience.projects.length > 0;
-                                                const hasResponsibilities =
-                                                        Array.isArray(experience.responsibilities) &&
-                                                        experience.responsibilities.length > 0;
-
-                                                const projects = hasProjects ? experience.projects : [];
-                                                const responsibilities = hasResponsibilities
-                                                        ? experience.responsibilities
-                                                        : [];
-
-                                                const visibleProjects = projects.slice(0, MAX_VISIBLE_ITEMS);
-                                                const hiddenProjects = projects.slice(MAX_VISIBLE_ITEMS);
-
-                                                const visibleResp = responsibilities.slice(0, MAX_VISIBLE_ITEMS);
-                                                const hiddenResp = responsibilities.slice(MAX_VISIBLE_ITEMS);
-
-                                                return (
-                                                        <TimelineItem key={experience.id}>
-                                                                <TimelineOppositeContent
-                                                                        sx={{
-                                                                                m: '0',
-                                                                                display: 'flex',
-                                                                                flexDirection: 'column',
-                                                                                alignItems:
-                                                                                        index % 2 === 0
-                                                                                                ? 'flex-end'
-                                                                                                : 'flex-start',
-                                                                        }}
-                                                                >
-                                                                        <Typography
-                                                                                variant="body2"
-                                                                                sx={{
-                                                                                        color: '#94a3b8',
-                                                                                        fontWeight: 600,
-                                                                                        mb: 1,
-                                                                                        textAlign:
-                                                                                                index % 2 === 0
-                                                                                                        ? 'right'
-                                                                                                        : 'left',
-                                                                                }}
-                                                                        >
-                                                                                {experience.period}
-                                                                        </Typography>
-                                                                        <Chip
-                                                                                label={experience.type}
-                                                                                size="small"
-                                                                                sx={{
-                                                                                        backgroundColor: `${experience.color}20`,
-                                                                                        color: experience.color,
-                                                                                        fontWeight: 600,
-                                                                                }}
-                                                                        />
-                                                                </TimelineOppositeContent>
-
-                                                                <TimelineSeparator>
-                                                                        <TimelineDot
-                                                                                sx={{
-                                                                                        backgroundColor:
-                                                                                                experience.color,
-                                                                                        width: 60,
-                                                                                        height: 60,
-                                                                                        display: 'flex',
-                                                                                        alignItems: 'center',
-                                                                                        justifyContent: 'center',
-                                                                                        boxShadow: `0 0 20px ${experience.color}40`,
-                                                                                        '& .MuiSvgIcon-root': {
-                                                                                                color: 'white',
-                                                                                                fontSize: '1.5rem',
-                                                                                        },
-                                                                                }}
-                                                                        >
-                                                                                {experience.icon}
-                                                                        </TimelineDot>
-                                                                        {index < workExperienceData.length - 1 && (
-                                                                                <TimelineConnector
-                                                                                        sx={{
-                                                                                                backgroundColor:
-                                                                                                        '#374151',
-                                                                                                width: 2,
-                                                                                                minHeight: 100,
-                                                                                        }}
-                                                                                />
-                                                                        )}
-                                                                </TimelineSeparator>
-
-                                                                <TimelineContent sx={{ py: '12px', px: 2 }}>
-                                                                        <Card
-                                                                                sx={{
-                                                                                        background: 'linear-gradient(135deg, rgba(139, 92, 246, 0.1), rgba(59, 130, 246, 0.1))',
-                                                                                        backdropFilter: 'blur(10px)',
-                                                                                        border: '1px solid rgba(255, 255, 255, 0.1)',
-                                                                                        borderRadius: '16px',
-                                                                                        transition: 'all 0.3s ease',
-                                                                                        '&:hover': {
-                                                                                                transform: 'translateY(-4px)',
-                                                                                                boxShadow: `0 10px 30px ${experience.color}20`,
-                                                                                                border: `1px solid ${experience.color}40`,
-                                                                                        },
-                                                                                }}
-                                                                        >
-                                                                                <CardContent
-                                                                                        sx={{ p: 3, textAlign: 'left' }}
-                                                                                >
-                                                                                        <Typography
-                                                                                                variant="h5"
-                                                                                                sx={{
-                                                                                                        color: 'white',
-                                                                                                        fontWeight: 700,
-                                                                                                        mb: 1,
-                                                                                                }}
-                                                                                        >
-                                                                                                {experience.position}
-                                                                                        </Typography>
-                                                                                        <Typography
-                                                                                                variant="h6"
-                                                                                                sx={{
-                                                                                                        color: experience.color,
-                                                                                                        fontWeight: 600,
-                                                                                                        mb: 1,
-                                                                                                }}
-                                                                                        >
-                                                                                                {experience.company}
-                                                                                        </Typography>
-                                                                                        <Typography
-                                                                                                className="flex items-center"
-                                                                                                variant="body2"
-                                                                                                sx={{
-                                                                                                        color: '#94a3b8',
-                                                                                                        mb: 2,
-                                                                                                }}
-                                                                                        >
-                                                                                                <MapPinIcon className="size-4 mr-1" />
-                                                                                                {experience.location}
-                                                                                        </Typography>
-
-                                                                                        {/* Section heading changes by type */}
-                                                                                        <Typography
-                                                                                                variant="body1"
-                                                                                                sx={{
-                                                                                                        color: '#e2e8f0',
-                                                                                                        fontWeight: 600,
-                                                                                                        mb: 2,
-                                                                                                        display: 'flex',
-                                                                                                        alignItems: 'center',
-                                                                                                }}
-                                                                                        >
-                                                                                                {hasProjects
-                                                                                                        ? 'Featured Projects'
-                                                                                                        : 'Key Responsibilities'}
-                                                                                        </Typography>
-
-                                                                                        {/* Always show first 3 */}
-                                                                                        {hasProjects
-                                                                                                ? renderProjectsList(
-                                                                                                          visibleProjects,
-                                                                                                          experience.color,
-                                                                                                          `pv-${index}-`,
-                                                                                                  )
-                                                                                                : renderResponsibilitiesList(
-                                                                                                          visibleResp,
-                                                                                                          experience.color,
-                                                                                                          `rv-${index}-`,
-                                                                                                  )}
-
-                                                                                        {/* Hidden with toggle */}
-                                                                                        {hasProjects &&
-                                                                                                hiddenProjects.length >
-                                                                                                        0 && (
-                                                                                                        <>
-                                                                                                                <Collapse
-                                                                                                                        in={
-                                                                                                                                isOpen
-                                                                                                                        }
-                                                                                                                        unmountOnExit
-                                                                                                                >
-                                                                                                                        {renderProjectsList(
-                                                                                                                                hiddenProjects,
-                                                                                                                                experience.color,
-                                                                                                                                `ph-${index}-`,
-                                                                                                                        )}
-                                                                                                                </Collapse>
-                                                                                                                <Button
-                                                                                                                        size="small"
-                                                                                                                        onClick={() =>
-                                                                                                                                toggleIndex(
-                                                                                                                                        index,
-                                                                                                                                )
-                                                                                                                        }
-                                                                                                                        endIcon={
-                                                                                                                                isOpen ? (
-                                                                                                                                        <ExpandLess />
-                                                                                                                                ) : (
-                                                                                                                                        <ExpandMore />
-                                                                                                                                )
-                                                                                                                        }
-                                                                                                                        sx={{
-                                                                                                                                color: '#e2e8f0',
-                                                                                                                                textTransform:
-                                                                                                                                        'none',
-                                                                                                                                fontWeight: 600,
-                                                                                                                                '&:hover': {
-                                                                                                                                        color: experience.color,
-                                                                                                                                },
-                                                                                                                                mb: 2,
-                                                                                                                                pl: 0,
-                                                                                                                        }}
-                                                                                                                >
-                                                                                                                        {isOpen
-                                                                                                                                ? 'See less'
-                                                                                                                                : `See more (${hiddenProjects.length})`}
-                                                                                                                </Button>
-                                                                                                        </>
-                                                                                                )}
-
-                                                                                        {!hasProjects &&
-                                                                                                hiddenResp.length >
-                                                                                                        0 && (
-                                                                                                        <>
-                                                                                                                <Collapse
-                                                                                                                        in={
-                                                                                                                                isOpen
-                                                                                                                        }
-                                                                                                                        unmountOnExit
-                                                                                                                >
-                                                                                                                        {renderResponsibilitiesList(
-                                                                                                                                hiddenResp,
-                                                                                                                                experience.color,
-                                                                                                                                `rh-${index}-`,
-                                                                                                                        )}
-                                                                                                                </Collapse>
-                                                                                                                <Button
-                                                                                                                        size="small"
-                                                                                                                        onClick={() =>
-                                                                                                                                toggleIndex(
-                                                                                                                                        index,
-                                                                                                                                )
-                                                                                                                        }
-                                                                                                                        endIcon={
-                                                                                                                                isOpen ? (
-                                                                                                                                        <ExpandLess />
-                                                                                                                                ) : (
-                                                                                                                                        <ExpandMore />
-                                                                                                                                )
-                                                                                                                        }
-                                                                                                                        sx={{
-                                                                                                                                color: '#e2e8f0',
-                                                                                                                                textTransform:
-                                                                                                                                        'none',
-                                                                                                                                fontWeight: 600,
-                                                                                                                                '&:hover': {
-                                                                                                                                        color: experience.color,
-                                                                                                                                },
-                                                                                                                                mb: 2,
-                                                                                                                                pl: 0,
-                                                                                                                        }}
-                                                                                                                >
-                                                                                                                        {isOpen
-                                                                                                                                ? 'See less'
-                                                                                                                                : `See more (${hiddenResp.length})`}
-                                                                                                                </Button>
-                                                                                                        </>
-                                                                                                )}
-
-                                                                                        {/* Technologies (only render if present) */}
-                                                                                        {Array.isArray(
-                                                                                                experience.technologies,
-                                                                                        ) &&
-                                                                                                experience.technologies
-                                                                                                        .length > 0 && (
-                                                                                                        <>
-                                                                                                                <Typography
-                                                                                                                        variant="body1"
-                                                                                                                        sx={{
-                                                                                                                                color: '#e2e8f0',
-                                                                                                                                fontWeight: 600,
-                                                                                                                                mb: 1,
-                                                                                                                        }}
-                                                                                                                >
-                                                                                                                        Technologies
-                                                                                                                        Used:
-                                                                                                                </Typography>
-                                                                                                                <Box
-                                                                                                                        sx={{
-                                                                                                                                display: 'flex',
-                                                                                                                                flexWrap: 'wrap',
-                                                                                                                                gap: 1,
-                                                                                                                        }}
-                                                                                                                >
-                                                                                                                        {experience.technologies.map(
-                                                                                                                                (
-                                                                                                                                        tech,
-                                                                                                                                        idx,
-                                                                                                                                ) => (
-                                                                                                                                        <Chip
-                                                                                                                                                key={
-                                                                                                                                                        idx
-                                                                                                                                                }
-                                                                                                                                                label={
-                                                                                                                                                        tech
-                                                                                                                                                }
-                                                                                                                                                size="small"
-                                                                                                                                                sx={{
-                                                                                                                                                        backgroundColor:
-                                                                                                                                                                'rgba(255, 255, 255, 0.1)',
-                                                                                                                                                        color: '#e2e8f0',
-                                                                                                                                                        border: '1px solid rgba(255, 255, 255, 0.2)',
-                                                                                                                                                        '&:hover': {
-                                                                                                                                                                backgroundColor: `${experience.color}20`,
-                                                                                                                                                                color: experience.color,
-                                                                                                                                                                border: `1px solid ${experience.color}40`,
-                                                                                                                                                        },
-                                                                                                                                                }}
-                                                                                                                                        />
-                                                                                                                                ),
-                                                                                                                        )}
-                                                                                                                </Box>
-                                                                                                        </>
-                                                                                                )}
-                                                                                </CardContent>
-                                                                        </Card>
-                                                                </TimelineContent>
-                                                        </TimelineItem>
-                                                );
-                                        })}
-                                </Timeline>
-                        </Box>
-
-                        {/* Mobile Cards */}
-                        <Box sx={{ display: { xs: 'block', md: 'none' }, pb: 4 }}>
-                                {workExperienceData.map((exp, index) => {
-                                        const isOpen = openIndex === index;
-
-                                        const hasProjects = Array.isArray(exp.projects) && exp.projects.length > 0;
-                                        const hasResponsibilities =
-                                                Array.isArray(exp.responsibilities) && exp.responsibilities.length > 0;
-
-                                        const projects = hasProjects ? exp.projects : [];
-                                        const responsibilities = hasResponsibilities ? exp.responsibilities : [];
-
-                                        const visibleProjects = projects.slice(0, MAX_VISIBLE_ITEMS);
-                                        const hiddenProjects = projects.slice(MAX_VISIBLE_ITEMS);
-
-                                        const visibleResp = responsibilities.slice(0, MAX_VISIBLE_ITEMS);
-                                        const hiddenResp = responsibilities.slice(MAX_VISIBLE_ITEMS);
-
-                                        return (
-                                                <Card
-                                                        key={exp.id}
+                        {/* Mobile Layout */}
+                        {isMobile ? (
+                                renderMobileTimeline()
+                        ) : (
+                                <>
+                                        {/* Desktop Navigation Controls */}
+                                        <Box
+                                                sx={{
+                                                        display: 'flex',
+                                                        justifyContent: 'center',
+                                                        alignItems: 'center',
+                                                        mb: 3,
+                                                        gap: 2,
+                                                }}
+                                        >
+                                                <IconButton
+                                                        onClick={handlePrev}
                                                         sx={{
-                                                                width: '100%',
-                                                                mb: 3,
-                                                                background: 'linear-gradient(135deg, rgba(139, 92, 246, 0.1), rgba(59, 130, 246, 0.1))',
-                                                                border: '1px solid rgba(255, 255, 255, 0.1)',
-                                                                borderRadius: '16px',
-                                                                p: 2,
+                                                                backgroundColor: 'rgba(255, 255, 255, 0.1)',
+                                                                color: '#ffffff',
+                                                                '&:hover': {
+                                                                        backgroundColor: 'rgba(255, 255, 255, 0.2)',
+                                                                },
                                                         }}
                                                 >
-                                                        <Typography
-                                                                variant="h6"
-                                                                sx={{ color: exp.color, fontWeight: 600 }}
-                                                        >
-                                                                {exp.company}
-                                                        </Typography>
-                                                        <Typography variant="body2" sx={{ color: '#94a3b8' }}>
-                                                                {exp.position}
-                                                        </Typography>
-                                                        <Typography variant="body2" sx={{ color: '#94a3b8', mb: 2 }}>
-                                                                {exp.period}
-                                                        </Typography>
-                                                        <Typography
-                                                                className="flex items-center"
-                                                                variant="body2"
-                                                                sx={{ color: '#cbd5e1', mb: 1 }}
-                                                        >
-                                                                <MapPinIcon className="size-4 mr-1" /> {exp.location}
-                                                        </Typography>
+                                                        <ChevronLeft />
+                                                </IconButton>
 
-                                                        <Typography
-                                                                variant="body1"
-                                                                sx={{ color: '#e2e8f0', fontWeight: 600, mb: 1 }}
-                                                        >
-                                                                {hasProjects
-                                                                        ? 'Featured Projects'
-                                                                        : 'Key Responsibilities'}
-                                                        </Typography>
+                                                <Box sx={{ display: 'flex', gap: 1 }}>
+                                                        {workExperienceData.map((_, index) => (
+                                                                <Box
+                                                                        key={index}
+                                                                        onClick={() => setCurrentIndex(index)}
+                                                                        sx={{
+                                                                                width: 12,
+                                                                                height: 12,
+                                                                                borderRadius: '50%',
+                                                                                backgroundColor:
+                                                                                        currentIndex === index
+                                                                                                ? '#6366f1'
+                                                                                                : 'rgba(255, 255, 255, 0.3)',
+                                                                                cursor: 'pointer',
+                                                                                transition: 'all 0.3s ease',
+                                                                                '&:hover': {
+                                                                                        backgroundColor:
+                                                                                                currentIndex === index
+                                                                                                        ? '#6366f1'
+                                                                                                        : 'rgba(255, 255, 255, 0.5)',
+                                                                                },
+                                                                        }}
+                                                                />
+                                                        ))}
+                                                </Box>
 
-                                                        {/* Always show first 3 */}
-                                                        {hasProjects
-                                                                ? renderProjectsList(
-                                                                          visibleProjects,
-                                                                          exp.color,
-                                                                          `mpv-${index}-`,
-                                                                  )
-                                                                : renderResponsibilitiesList(
-                                                                          visibleResp,
-                                                                          exp.color,
-                                                                          `mrv-${index}-`,
-                                                                  )}
+                                                <IconButton
+                                                        onClick={handleNext}
+                                                        sx={{
+                                                                backgroundColor: 'rgba(255, 255, 255, 0.1)',
+                                                                color: '#ffffff',
+                                                                '&:hover': {
+                                                                        backgroundColor: 'rgba(255, 255, 255, 0.2)',
+                                                                },
+                                                        }}
+                                                >
+                                                        <ChevronRight />
+                                                </IconButton>
+                                        </Box>
 
-                                                        {/* Toggle */}
-                                                        {hasProjects && hiddenProjects.length > 0 && (
-                                                                <>
-                                                                        <Collapse in={isOpen} unmountOnExit>
-                                                                                {renderProjectsList(
-                                                                                        hiddenProjects,
-                                                                                        exp.color,
-                                                                                        `mph-${index}-`,
-                                                                                )}
-                                                                        </Collapse>
-                                                                        <Button
-                                                                                size="small"
-                                                                                onClick={() => toggleIndex(index)}
-                                                                                endIcon={
-                                                                                        isOpen ? (
-                                                                                                <ExpandLess />
-                                                                                        ) : (
-                                                                                                <ExpandMore />
-                                                                                        )
-                                                                                }
-                                                                                sx={{
-                                                                                        color: '#e2e8f0',
-                                                                                        textTransform: 'none',
-                                                                                        fontWeight: 600,
-                                                                                        '&:hover': { color: exp.color },
-                                                                                        pl: 0,
-                                                                                }}
-                                                                        >
-                                                                                {isOpen
-                                                                                        ? 'See less'
-                                                                                        : `See more (${hiddenProjects.length})`}
-                                                                        </Button>
-                                                                </>
+                                        {/* Desktop Swipeable Views with Mouse/Touch Support */}
+                                        <Box sx={{ height: '600px', position: 'relative' }}>
+                                                <SwipeableViews
+                                                        index={currentIndex}
+                                                        onChangeIndex={handleChangeIndex}
+                                                        enableMouseEvents
+                                                        enableKeyboardEvents
+                                                        style={{ height: '100%' }}
+                                                >
+                                                        {workExperienceData.map((experience) =>
+                                                                renderExperienceCard(experience),
                                                         )}
-
-                                                        {!hasProjects && hiddenResp.length > 0 && (
-                                                                <>
-                                                                        <Collapse in={isOpen} unmountOnExit>
-                                                                                {renderResponsibilitiesList(
-                                                                                        hiddenResp,
-                                                                                        exp.color,
-                                                                                        `mrh-${index}-`,
-                                                                                )}
-                                                                        </Collapse>
-                                                                        <Button
-                                                                                size="small"
-                                                                                onClick={() => toggleIndex(index)}
-                                                                                endIcon={
-                                                                                        isOpen ? (
-                                                                                                <ExpandLess />
-                                                                                        ) : (
-                                                                                                <ExpandMore />
-                                                                                        )
-                                                                                }
-                                                                                sx={{
-                                                                                        color: '#e2e8f0',
-                                                                                        textTransform: 'none',
-                                                                                        fontWeight: 600,
-                                                                                        '&:hover': { color: exp.color },
-                                                                                        pl: 0,
-                                                                                }}
-                                                                        >
-                                                                                {isOpen
-                                                                                        ? 'See less'
-                                                                                        : `See more (${hiddenResp.length})`}
-                                                                        </Button>
-                                                                </>
-                                                        )}
-
-                                                        {/* Technologies (if any) */}
-                                                        {Array.isArray(exp.technologies) &&
-                                                                exp.technologies.length > 0 && (
-                                                                        <>
-                                                                                <Typography
-                                                                                        variant="body1"
-                                                                                        sx={{
-                                                                                                color: '#e2e8f0',
-                                                                                                fontWeight: 600,
-                                                                                                mt: 2,
-                                                                                                mb: 1,
-                                                                                        }}
-                                                                                >
-                                                                                        Technologies Used:
-                                                                                </Typography>
-                                                                                <Box
-                                                                                        sx={{
-                                                                                                display: 'flex',
-                                                                                                flexWrap: 'wrap',
-                                                                                                gap: 1,
-                                                                                        }}
-                                                                                >
-                                                                                        {exp.technologies.map(
-                                                                                                (tech, idx) => (
-                                                                                                        <Chip
-                                                                                                                key={
-                                                                                                                        idx
-                                                                                                                }
-                                                                                                                label={
-                                                                                                                        tech
-                                                                                                                }
-                                                                                                                size="small"
-                                                                                                                sx={{
-                                                                                                                        backgroundColor:
-                                                                                                                                'rgba(255, 255, 255, 0.1)',
-                                                                                                                        color: '#e2e8f0',
-                                                                                                                        border: '1px solid rgba(255, 255, 255, 0.2)',
-                                                                                                                }}
-                                                                                                        />
-                                                                                                ),
-                                                                                        )}
-                                                                                </Box>
-                                                                        </>
-                                                                )}
-                                                </Card>
-                                        );
-                                })}
-                        </Box>
+                                                </SwipeableViews>
+                                        </Box>
+                                </>
+                        )}
                 </Box>
         );
 };

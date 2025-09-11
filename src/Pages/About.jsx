@@ -16,15 +16,6 @@ const Header = memo(() => (
                                 About Me
                         </h2>
                 </div>
-                <p
-                        className="mt-2 text-gray-400 max-w-2xl text-sm sm:text-lg gap-2 mx-auto flex items-center justify-center line-clamp-1 overflow-hidden"
-                        data-aos="zoom-in-up"
-                        data-aos-duration="800"
-                >
-                        <Sparkles className="size-4 text-purple-400" />
-                        <p>{'<ThereIsAlwaysOneMoreBugToFix />'}</p>
-                        <Sparkles className="size-4 text-purple-400" />
-                </p>
         </div>
 ));
 
