@@ -124,14 +124,6 @@ The built files in the `dist` folder can be deployed to:
 
 ### Common Issues
 
-**Port Already in Use:**
-
-```bash
-# Kill process on port 5173
-npx kill-port 5173
-# Then restart
-npm run dev
-```
 
 **Dependency Issues:**
 
