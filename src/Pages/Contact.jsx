@@ -69,7 +69,7 @@ const ContactPage = () => {
 
         return (
                 <>
-                        <div className="text-center lg:mt-[5%] mt-10 mb-2 sm:px-0 px-[5%]">
+                        <div className="text-center lg:mt-[5%] mt-10 mb-6 sm:px-0 px-[5%]">
                                 <h2
                                         data-aos="fade-down"
                                         data-aos-duration="1000"
@@ -93,12 +93,12 @@ const ContactPage = () => {
                                         data-aos-duration="1100"
                                         className="text-slate-400 max-w-2xl mx-auto text-sm md:text-base mt-2"
                                 >
-                                        Got a question? Send me a message, and I'll get back to you soon.
+                                        Got a question? Send me a message, and I&apos;ll get back to you soon.
                                 </p>
                         </div>
 
                         <div className="h-auto py-10 flex items-center justify-center px-[5%] md:px-0" id="Contact">
-                                <div className="container px-[1%] grid grid-cols-1 sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-[45%_55%] 2xl:grid-cols-[35%_65%] gap-12">
+                                <div className="container px-[1%] grid grid-cols-1 sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-[45%_55%] 2xl:grid-cols-[35%_65%] gap-6 md:gap-8">
                                         <div
                                                 data-aos="fade-right"
                                                 data-aos-duration="1200"
@@ -111,18 +111,13 @@ const ContactPage = () => {
                                                                 </h2>
                                                                 <p className="text-gray-400">
                                                                         Have something to discuss? Send me a message and
-                                                                        let's talk.
+                                                                        let&apos;s talk.
                                                                 </p>
                                                         </div>
                                                         <Share2 className="w-10 h-10 text-[#6366f1] opacity-50" />
                                                 </div>
 
-                                                <form
-                                                        action="https://formsubmit.co/ekizulfarrachman@gmail.com"
-                                                        method="POST"
-                                                        onSubmit={handleSubmit}
-                                                        className="space-y-6"
-                                                >
+                                                <form method="POST" onSubmit={handleSubmit} className="space-y-6">
                                                         {/* FormSubmit Configuration */}
                                                         <input type="hidden" name="_template" value="table" />
                                                         <input type="hidden" name="_captcha" value="false" />
@@ -189,7 +184,7 @@ const ContactPage = () => {
                                                         </button>
                                                 </form>
 
-                                                <div className="mt-10 pt-6 border-t border-white/10 flex justify-center space-x-6">
+                                                <div className="mt-8 pt-8 border-t border-white/10 flex justify-center space-x-6">
                                                         <SocialLinks />
                                                 </div>
                                         </div>

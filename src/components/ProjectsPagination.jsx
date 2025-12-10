@@ -108,6 +108,7 @@ const ProjectsPagination = ({ projectsData }) => {
                                                                 Description={project.Description}
                                                                 Link={project.Link}
                                                                 id={project.id}
+                                                                TechStack={project.TechStack}
                                                         />
                                                 </div>
                                         ))}
@@ -116,7 +117,7 @@ const ProjectsPagination = ({ projectsData }) => {
 
                         {/* Desktop Pagination Controls */}
                         {!isMobile && totalPages > 1 && (
-                                <div className="flex items-center justify-center gap-2">
+                                <div className="flex items-center justify-center gap-3">
                                         {/* Previous Button */}
                                         <button
                                                 onClick={handlePrevPage}
@@ -128,13 +129,13 @@ const ProjectsPagination = ({ projectsData }) => {
                                         </button>
 
                                         {/* Page Numbers */}
-                                        <div className="flex gap-1">
+                                        <div className="flex gap-3">
                                                 {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (
                                                         <button
                                                                 key={page}
                                                                 onClick={() => handlePageChange(page)}
                                                                 disabled={isAnimating}
-                                                                className={`px-3 py-2 rounded-lg transition-all duration-300 disabled:cursor-not-allowed ${
+                                                                className={`px-4 py-2 rounded-lg transition-all duration-300 disabled:cursor-not-allowed ${
                                                                         currentPage === page
                                                                                 ? 'bg-purple-500 text-white'
                                                                                 : 'bg-white/5 text-gray-300 hover:bg-white/10'

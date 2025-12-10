@@ -15,8 +15,9 @@ import ProjectsPagination from '../components/ProjectsPagination.jsx';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 
-import { Code, Boxes, Briefcase } from 'lucide-react';
+import { Code, Boxes, Briefcase, GraduationCap } from 'lucide-react';
 import { projectsData } from '../constants/index.js';
+import Education from '../components/Education.jsx';
 
 function TabPanel({ children, value, index, ...other }) {
         return (
@@ -188,6 +189,13 @@ export default function FullWidthTabs() {
 
                                                 <Tab
                                                         icon={
+                                                                <GraduationCap className="mb-2 w-5 h-5 transition-all duration-300" />
+                                                        }
+                                                        label="Education"
+                                                        {...a11yProps(3)}
+                                                />
+                                                <Tab
+                                                        icon={
                                                                 <Boxes className="mb-2 w-5 h-5 transition-all duration-300" />
                                                         }
                                                         label="Tech Stack"
@@ -208,6 +216,9 @@ export default function FullWidthTabs() {
                                                 <WorkExperience />
                                         </TabPanel>
                                         <TabPanel value={value} index={2} dir={theme.direction}>
+                                                <Education />
+                                        </TabPanel>
+                                        <TabPanel value={value} index={3} dir={theme.direction}>
                                                 <div className="w-full mt-3">
                                                         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 lg:gap-8 gap-5">
                                                                 {techStacks.map((stack, index) => (

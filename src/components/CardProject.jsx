@@ -1,8 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { ExternalLink, ArrowRight } from 'lucide-react';
+import { Chip } from '@mui/material';
 
-const CardProject = ({ Img, Title, Description, Link: ProjectLink, id }) => {
+const CardProject = ({ Img, Title, Description, Link: ProjectLink, id, TechStack }) => {
         // Handle kasus ketika ProjectLink kosong
         const handleLiveDemo = (e) => {
                 if (!ProjectLink) {
@@ -19,7 +20,7 @@ const CardProject = ({ Img, Title, Description, Link: ProjectLink, id }) => {
         };
 
         return (
-                <div className="group relative w-full">
+                <div className="group relative">
                         <div className="relative overflow-hidden rounded-xl bg-gradient-to-br from-slate-900/90 to-slate-800/90 backdrop-blur-lg border border-white/10 shadow-2xl transition-all duration-300 hover:shadow-purple-500/20">
                                 <div className="absolute inset-0 bg-gradient-to-br from-blue-500/10 via-purple-500/10 to-pink-500/10 opacity-50 group-hover:opacity-70 transition-opacity duration-300"></div>
 
@@ -36,6 +37,31 @@ const CardProject = ({ Img, Title, Description, Link: ProjectLink, id }) => {
                                                 <h3 className="text-xl font-semibold bg-gradient-to-r from-blue-200 via-purple-200 to-pink-200 bg-clip-text text-transparent">
                                                         {Title}
                                                 </h3>
+
+                                                {/* Crucial Skills */}
+                                                {TechStack && TechStack.length > 0 && (
+                                                        <div className="flex flex-wrap gap-1.5">
+                                                                {TechStack.slice(0, 5).map((tech, idx) => (
+                                                                        <Chip
+                                                                                key={idx}
+                                                                                label={tech}
+                                                                                size="small"
+                                                                                sx={{
+                                                                                        backgroundColor:
+                                                                                                'rgba(139, 92, 246, 0.2)',
+                                                                                        color: '#a78bfa',
+                                                                                        border: '1px solid rgba(139, 92, 246, 0.4)',
+                                                                                        fontSize: '0.7rem',
+                                                                                        height: '24px',
+                                                                                        '&:hover': {
+                                                                                                backgroundColor:
+                                                                                                        'rgba(139, 92, 246, 0.3)',
+                                                                                        },
+                                                                                }}
+                                                                        />
+                                                                ))}
+                                                        </div>
+                                                )}
 
                                                 <p className="text-gray-300/80 text-sm leading-relaxed line-clamp-2">
                                                         {Description}

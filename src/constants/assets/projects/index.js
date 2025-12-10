@@ -13,6 +13,9 @@ import MeetAI from './meetai.png';
 import Snapcast from './snapcast.png';
 import Echo from './echo.png';
 import Mindspace from './mindspace.png';
+import Nodebase from './nodebase.png';
+import Devent from './devent.png';
+import Calog from './calog.png';
 
 export {
         ThreeDPortfolio,
@@ -29,4 +32,7 @@ export {
         Snapcast,
         Echo,
         Mindspace,
+        Nodebase,
+        Devent,
+        Calog,
 };

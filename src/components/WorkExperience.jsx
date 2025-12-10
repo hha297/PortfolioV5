@@ -538,6 +538,7 @@ const WorkExperience = () => {
                                 display: 'flex',
                                 flexDirection: 'column',
                                 alignItems: 'center',
+                                overflow: 'visible',
                         }}
                 >
                         {/* Mobile Layout */}
@@ -545,82 +546,118 @@ const WorkExperience = () => {
                                 renderMobileTimeline()
                         ) : (
                                 <>
-                                        {/* Desktop Navigation Controls */}
+                                        {/* Desktop Navigation Controls - Dots */}
                                         <Box
                                                 sx={{
                                                         display: 'flex',
                                                         justifyContent: 'center',
                                                         alignItems: 'center',
                                                         mb: 3,
-                                                        gap: 2,
+                                                        gap: 1,
                                                 }}
                                         >
+                                                {workExperienceData.map((_, index) => (
+                                                        <Box
+                                                                key={index}
+                                                                onClick={() => setCurrentIndex(index)}
+                                                                sx={{
+                                                                        width: 12,
+                                                                        height: 12,
+                                                                        borderRadius: '50%',
+                                                                        backgroundColor:
+                                                                                currentIndex === index
+                                                                                        ? '#6366f1'
+                                                                                        : 'rgba(255, 255, 255, 0.3)',
+                                                                        cursor: 'pointer',
+                                                                        transition: 'all 0.3s ease',
+                                                                        '&:hover': {
+                                                                                backgroundColor:
+                                                                                        currentIndex === index
+                                                                                                ? '#6366f1'
+                                                                                                : 'rgba(255, 255, 255, 0.5)',
+                                                                        },
+                                                                }}
+                                                        />
+                                                ))}
+                                        </Box>
+
+                                        {/* Desktop Swipeable Views with Arrows on Sides */}
+                                        <Box
+                                                sx={{
+                                                        display: 'flex',
+                                                        alignItems: 'center',
+                                                        gap: { xs: 1, md: 2 },
+                                                        width: '100%',
+                                                        position: 'relative',
+                                                        overflow: 'visible',
+                                                        px: { xs: 3, md: 4 },
+                                                }}
+                                        >
+                                                {/* Left Arrow */}
                                                 <IconButton
                                                         onClick={handlePrev}
                                                         sx={{
                                                                 backgroundColor: 'rgba(255, 255, 255, 0.1)',
                                                                 color: '#ffffff',
+                                                                width: { xs: 40, md: 48 },
+                                                                height: { xs: 40, md: 48 },
+                                                                flexShrink: 0,
                                                                 '&:hover': {
                                                                         backgroundColor: 'rgba(255, 255, 255, 0.2)',
+                                                                        transform: 'scale(1.1)',
+                                                                },
+                                                                '&.Mui-disabled': {
+                                                                        opacity: 0.3,
                                                                 },
                                                         }}
+                                                        disabled={currentIndex === 0}
                                                 >
-                                                        <ChevronLeft />
+                                                        <ChevronLeft sx={{ fontSize: { xs: 24, md: 28 } }} />
                                                 </IconButton>
 
-                                                <Box sx={{ display: 'flex', gap: 1 }}>
-                                                        {workExperienceData.map((_, index) => (
-                                                                <Box
-                                                                        key={index}
-                                                                        onClick={() => setCurrentIndex(index)}
-                                                                        sx={{
-                                                                                width: 12,
-                                                                                height: 12,
-                                                                                borderRadius: '50%',
-                                                                                backgroundColor:
-                                                                                        currentIndex === index
-                                                                                                ? '#6366f1'
-                                                                                                : 'rgba(255, 255, 255, 0.3)',
-                                                                                cursor: 'pointer',
-                                                                                transition: 'all 0.3s ease',
-                                                                                '&:hover': {
-                                                                                        backgroundColor:
-                                                                                                currentIndex === index
-                                                                                                        ? '#6366f1'
-                                                                                                        : 'rgba(255, 255, 255, 0.5)',
-                                                                                },
-                                                                        }}
-                                                                />
-                                                        ))}
+                                                {/* Card Container */}
+                                                <Box
+                                                        sx={{
+                                                                height: '600px',
+                                                                position: 'relative',
+                                                                flex: 1,
+                                                                minWidth: 0,
+                                                        }}
+                                                >
+                                                        <SwipeableViews
+                                                                index={currentIndex}
+                                                                onChangeIndex={handleChangeIndex}
+                                                                enableMouseEvents
+                                                                enableKeyboardEvents
+                                                                style={{ height: '100%' }}
+                                                        >
+                                                                {workExperienceData.map((experience) =>
+                                                                        renderExperienceCard(experience),
+                                                                )}
+                                                        </SwipeableViews>
                                                 </Box>
 
+                                                {/* Right Arrow */}
                                                 <IconButton
                                                         onClick={handleNext}
                                                         sx={{
                                                                 backgroundColor: 'rgba(255, 255, 255, 0.1)',
                                                                 color: '#ffffff',
+                                                                width: { xs: 40, md: 48 },
+                                                                height: { xs: 40, md: 48 },
+                                                                flexShrink: 0,
                                                                 '&:hover': {
                                                                         backgroundColor: 'rgba(255, 255, 255, 0.2)',
+                                                                        transform: 'scale(1.1)',
+                                                                },
+                                                                '&.Mui-disabled': {
+                                                                        opacity: 0.3,
                                                                 },
                                                         }}
+                                                        disabled={currentIndex === workExperienceData.length - 1}
                                                 >
-                                                        <ChevronRight />
+                                                        <ChevronRight sx={{ fontSize: { xs: 24, md: 28 } }} />
                                                 </IconButton>
-                                        </Box>
-
-                                        {/* Desktop Swipeable Views with Mouse/Touch Support */}
-                                        <Box sx={{ height: '600px', position: 'relative' }}>
-                                                <SwipeableViews
-                                                        index={currentIndex}
-                                                        onChangeIndex={handleChangeIndex}
-                                                        enableMouseEvents
-                                                        enableKeyboardEvents
-                                                        style={{ height: '100%' }}
-                                                >
-                                                        {workExperienceData.map((experience) =>
-                                                                renderExperienceCard(experience),
-                                                        )}
-                                                </SwipeableViews>
                                         </Box>
                                 </>
                         )}
