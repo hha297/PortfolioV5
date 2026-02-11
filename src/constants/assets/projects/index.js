@@ -16,6 +16,7 @@ import Mindspace from './mindspace.png';
 import Nodebase from './nodebase.png';
 import Devent from './devent.png';
 import Calog from './calog.png';
+import Cortex from './cortex.png';
 
 export {
         ThreeDPortfolio,
@@ -35,4 +36,5 @@ export {
         Nodebase,
         Devent,
         Calog,
+        Cortex,
 };

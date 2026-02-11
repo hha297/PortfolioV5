@@ -54,7 +54,7 @@ const techStacks = [
         { icon: 'html.svg', language: 'HTML' },
         { icon: 'css.svg', language: 'CSS' },
         { icon: 'tailwind.svg', language: 'TailwindCSS' },
-        { icon: 'javascript.svg', language: 'JavaScript' },
+        { icon: 'javascript.svg', language: 'Javascript' },
         { icon: 'typescript.svg', language: 'Typescript' },
         { icon: 'nextjs.svg', language: 'Next.js' },
         { icon: 'reactjs.svg', language: 'React.js' },
@@ -228,15 +228,15 @@ export default function FullWidthTabs() {
                                                                                         index % 3 === 0
                                                                                                 ? 'fade-up-right'
                                                                                                 : index % 3 === 1
-                                                                                                ? 'fade-up'
-                                                                                                : 'fade-up-left'
+                                                                                                  ? 'fade-up'
+                                                                                                  : 'fade-up-left'
                                                                                 }
                                                                                 data-aos-duration={
                                                                                         index % 3 === 0
                                                                                                 ? '1000'
                                                                                                 : index % 3 === 1
-                                                                                                ? '1200'
-                                                                                                : '1000'
+                                                                                                  ? '1200'
+                                                                                                  : '1000'
                                                                                 }
                                                                         >
                                                                                 <TechStackIcon
