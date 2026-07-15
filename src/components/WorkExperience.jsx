@@ -13,7 +13,7 @@ const workExperienceData = [
                 position: 'Mobile Developer',
                 company: 'Factorise Technologies ApS',
                 location: 'Kolding, Denmark (Remote)',
-                period: 'August 2025 - Present',
+                period: 'August 2025 - March 2026',
                 type: 'Internship',
                 responsibilities: [
                         'Develop and maintain mobile applications using React Native and modern mobile technologies',
