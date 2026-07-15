@@ -9,7 +9,7 @@ import Mindspace from './mindspace.png';
 import Nodebase from './nodebase.png';
 import Calog from './calog.png';
 import Cortex from './cortex.png';
-import Notoria from './Notoria.png';
+import Notoria from './notoria.png';
 
 export {
         Slack,
